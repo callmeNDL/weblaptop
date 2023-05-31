@@ -1,0 +1,15 @@
+.listItemContainer {
+  .titleItem {
+    display: flex;
+    justify-content: space-between;
+  }
+  .listItemBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .Item {
+      margin-bottom: 20px;
+    }
+  }
+}
