@@ -130,7 +130,7 @@ const ListItem = () => {
     <div className="listItemContainer">
       <div className="titleItem">
         <p>LapTop</p>
-        <p>Xem tat ca</p>
+        <p>Xem tất cả</p>
       </div>
       <div className="listItemBox">
         {listItem.map((item) => (
