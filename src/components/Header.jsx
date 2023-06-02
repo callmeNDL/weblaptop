@@ -1,6 +1,6 @@
-import hedaerImg from "../assets/imgs/header-img.webp";
-import PrimarySearchAppBar from "./PrimarySearchAppBar";
-import "../assets/scss/Header.scss";
+import hedaerImg from '../assets/imgs/header-img.webp';
+import PrimarySearchAppBar from './AppBar/PrimarySearchAppBar';
+import '../assets/scss/Header.scss';
 
 const Header = () => {
   return (

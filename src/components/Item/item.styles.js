@@ -31,7 +31,6 @@ const useStyles = makeStyles(() => ({
     overflow: 'hidden !important',
   },
   percentDiscount: {
-    margin: '0px !important',
     padding: '0px !important',
     borderStyle: 'none !important',
     borderWidth: '1px !important',

@@ -13,7 +13,7 @@ const Item = ({ data }) => {
 
   return (
     <Grid key={data.id} item>
-      <Card sx={{ maxWidth: 345 }} className={classes.Item}>
+      <Card sx={{ maxWidth: 250 }} className={classes.Item}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -40,7 +40,7 @@ const Item = ({ data }) => {
             >
               {data.priceLast}
             </Typography>
-            <Box xs={{ display: 'flex' }}>
+            <Box style={{ display: 'flex' }}>
               <Typography
                 className={classes.priceFrist}
                 variant="body2"
@@ -49,6 +49,7 @@ const Item = ({ data }) => {
                 {data.priceFrist}
               </Typography>
               <Typography
+                style={{ marginLeft: '10px' }}
                 className={classes.percentDiscount}
                 variant="body2"
                 color="text.secondary"

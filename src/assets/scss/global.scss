@@ -1,0 +1,45 @@
+.button-primary {
+    border-style: none;
+    border-width: 1px;
+    border-color: unset;
+    opacity: 1;
+    padding: 0rem 1.25rem;
+    border-radius: 0.25rem;
+    background-color: rgb(20, 53, 195);
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    outline: none;
+    min-width: 2.5rem;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    cursor: pointer;
+    transition-duration: 80ms;
+    transition-property: background-color;
+    height: 46px;
+}
+
+.button-second {
+    opacity: 1;
+    padding: 0rem 1.25rem;
+    border-radius: 0.25rem;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(20, 53, 195);
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    outline: none;
+    min-width: 2.5rem;
+    color: rgb(20, 53, 195);
+    width: 100%;
+    cursor: pointer;
+    transition-duration: 80ms;
+    transition-property: background-color;
+    height: 46px;
+}
