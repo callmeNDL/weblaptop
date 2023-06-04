@@ -1,10 +1,5 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Box, CardActionArea } from '@mui/material';
 
 import useStyles from './topLapTop.styles';
 import Item from '../Item/Item';

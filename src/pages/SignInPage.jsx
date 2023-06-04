@@ -1,10 +1,11 @@
+import { Container } from '@mui/material';
 import SignIn from '../components/SignIn/SignIn';
 
 const SignInPage = () => {
   return (
-    <div>
+    <Container>
       <SignIn />
-    </div>
+    </Container>
   );
 };
 

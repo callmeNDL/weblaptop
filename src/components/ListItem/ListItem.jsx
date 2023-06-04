@@ -2,7 +2,7 @@ import Item from '../Item/Item';
 import PaginationRounded from '../Pagination/Pagination';
 import './ListItem.scss';
 
-const ListItem = () => {
+const ListItem = ({ title }) => {
   const listItem = [
     {
       id: 1,
@@ -160,10 +160,14 @@ const ListItem = () => {
   ];
   return (
     <div className="listItemContainer">
-      <div className="titleItem">
-        <p>LapTop</p>
-        <p>Xem tat ca</p>
-      </div>
+      {title ? (
+        <div className="titleItem">
+          <p>LapTop</p>
+          <p>Xem tat ca</p>
+        </div>
+      ) : (
+        ''
+      )}
       <div className="listItemBox">
         {listItem.map((item) => (
           <div className="Item">

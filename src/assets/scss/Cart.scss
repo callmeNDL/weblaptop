@@ -1,0 +1,19 @@
+.no-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    border-style: none;
+    border-width: 1px;
+    border-color: unset;
+    opacity: 1;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: rgb(132, 135, 136);
+  }
+
+  button {
+    max-width: 200px;
+  }
+}

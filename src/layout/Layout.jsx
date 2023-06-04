@@ -1,14 +1,13 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import { Container } from "@mui/material";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const AppLayout = ({ children }) => {
   return (
-    <Container maxWidth="xl">
+    <>
       <Header />
       {children}
       <Footer />
-    </Container>
+    </>
   );
 };
 

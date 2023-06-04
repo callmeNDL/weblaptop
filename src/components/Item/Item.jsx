@@ -7,13 +7,21 @@ import Typography from '@mui/material/Typography';
 import { Box, CardActionArea } from '@mui/material';
 
 import useStyles from './item.styles';
+import { useNavigate } from 'react-router-dom';
 
 const Item = ({ data }) => {
   const classes = useStyles();
+  const navigator = useNavigate();
 
   return (
-    <Grid key={data.id} item>
-      <Card sx={{ maxWidth: 250 }} className={classes.Item}>
+    <Grid key={data.id} item className={classes.ItemBox}>
+      <Card
+        sx={{ maxWidth: 215 }}
+        className={classes.Item}
+        onClick={() => {
+          navigator(`/product/${data.id}`);
+        }}
+      >
         <CardActionArea>
           <CardMedia
             component="img"

@@ -1,11 +1,12 @@
 import React from 'react';
 import SignUp from '../components/SignUp/SignUp';
+import { Container } from '@mui/material';
 
 const SingUp = () => {
   return (
-    <div>
+    <Container>
       <SignUp />
-    </div>
+    </Container>
   );
 };
 

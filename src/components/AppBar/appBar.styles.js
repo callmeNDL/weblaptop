@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   AppBar: {
+    boxShadow: 'none !important',
     backgroundColor: 'white !important',
     height: '88px',
     color: 'rgb(130, 134, 158) !important',
@@ -21,7 +22,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   Profile: {
-    minWidth: '300px',
+    minWidth: '150px',
     display: 'flex',
     justifyContent: 'space-around',
 
@@ -34,7 +35,34 @@ const useStyles = makeStyles(() => ({
     margin: '0 30px',
   },
   SearchBox: {
-    backgroundColor: '#F5F5F5 !important',
+    minWidth: '500px',
+    backgroundColor: '#F5F5F5',
+    display: 'flex',
+    border: '1px solid #eaeaea',
+    borderRadius: '8px',
+  },
+  searchInput: {
+    width: '100%',
+    borderRadius: '8px',
+    backgroundColor: 'transparent',
+    border: 'none',
+    height: '36px',
+    '&:focus': {
+      border: 'none',
+      outline: 'none',
+    },
+  },
+  searchButton: {
+    cursor: 'pointer',
+    border: '0',
+    background: 'blue',
+    borderRadius: '8px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '& svg': {
+      color: 'white',
+    },
   },
 }));
 

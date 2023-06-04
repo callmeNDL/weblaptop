@@ -1,21 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  topLaptopContainer: {
-    marginTop: '30px !important',
-    paddingTop: '40px !important',
-  },
-  topLaptop: {
-    dislay: 'flex !important',
-    '& div.MuiGrid-item': {
-      width: '228px',
-      height: '100%',
-      backgroundColor: 'white !important',
-    },
-    '& div.MuiCardContent-root': {
-      backgroundColor: 'white !important',
-    },
-  },
+  ItemBox: {},
   brandName: {
     margin: '0px !important',
     padding: '0px !important',
