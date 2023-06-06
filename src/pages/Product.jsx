@@ -50,6 +50,7 @@ const Product = () => {
       name: 'Giá tăng dần',
     },
   ];
+  const brandItem = ['MSI', 'HP', 'APPLE', 'ACER', 'LG', 'DELL'];
   function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
@@ -85,12 +86,9 @@ const Product = () => {
             <div className="item">
               <div className="subttile">Thương hiệu</div>
               <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox defaultChecked />}
-                  label="MSI"
-                />
-                <FormControlLabel control={<Checkbox />} label="HP" />
-                <FormControlLabel control={<Checkbox />} label="APPLE" />
+                {brandItem.map((item) => (
+                  <FormControlLabel control={<Checkbox />} label={item} />
+                ))}
               </FormGroup>
               <div className="line"></div>
             </div>
@@ -103,6 +101,26 @@ const Product = () => {
                 />
                 <FormControlLabel control={<Checkbox />} label="13" />
                 <FormControlLabel control={<Checkbox />} label="15" />
+              </FormGroup>
+              <div className="line"></div>
+            </div>
+            <div className="item">
+              <div className="subttile">Dung lượng RAM</div>
+              <FormGroup>
+                <FormControlLabel control={<Checkbox />} label="4GB" />
+                <FormControlLabel control={<Checkbox />} label="8GB" />
+                <FormControlLabel control={<Checkbox />} label="16GB" />
+                <FormControlLabel control={<Checkbox />} label="32GB" />
+                <FormControlLabel control={<Checkbox />} label="64GB" />
+              </FormGroup>
+              <div className="line"></div>
+            </div>
+            <div className="item">
+              <div className="subttile">Ổ cứng</div>
+              <FormGroup>
+                <FormControlLabel control={<Checkbox />} label="512GB" />
+                <FormControlLabel control={<Checkbox />} label="1TB" />
+                <FormControlLabel control={<Checkbox />} label="2TB" />
               </FormGroup>
               <div className="line"></div>
             </div>

@@ -6,7 +6,6 @@ import SignInPage from './pages/SignInPage';
 import AppLayout from './layout/Layout';
 import SignUp from './components/SignUp/SignUp';
 import Promo from './pages/Promo';
-import ItemDetail from './components/ItemDetail/ItemDetail';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
 import Profile from './pages/Profile';

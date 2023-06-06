@@ -1,5 +1,6 @@
 import { Container } from '@mui/material';
 import Account from '../components/Profile/Account';
+import AccountIfo from '../components/Profile/AccountIfo';
 
 const Profile = () => {
   const account = {
@@ -10,7 +11,7 @@ const Profile = () => {
     <div className="profile-container bg-container">
       <Container style={{ display: 'flex' }}>
         <Account dataAccount={account} />
-        <div></div>
+        <AccountIfo />
       </Container>
     </div>
   );

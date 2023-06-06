@@ -2,6 +2,10 @@
   background-color: #f8f8fc;
 }
 
+.padding-container {
+  padding: 30px 0 30px 0;
+}
+
 .bg-white {
   background-color: white;
 }
@@ -12,4 +16,10 @@
 .bg-second {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.box-white {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
 }
