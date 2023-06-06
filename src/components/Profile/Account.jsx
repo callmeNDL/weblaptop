@@ -9,7 +9,7 @@ const Account = ({ dataAccount }) => {
       <div className="account-info">
         <img src={dataAccount.img} alt="img-avatar" />
         <div className="account-name">
-          <span>Tài khoản của</span>
+          <span>Tài khoản của Long</span>
           <span>{dataAccount.name}</span>
         </div>
       </div>
