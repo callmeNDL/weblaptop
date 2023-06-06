@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import Item from '../Item/Item';
 import PaginationRounded from '../Pagination/Pagination';
 import './ListItem.scss';
 
 const ListItem = ({ title }) => {
+  const navigate = useNavigate();
   const listItem = [
     {
       id: 1,
@@ -162,8 +164,15 @@ const ListItem = ({ title }) => {
     <div className="listItemContainer">
       {title ? (
         <div className="titleItem">
-          <p>LapTop</p>
-          <p>Xem tat ca</p>
+          <p className="title">LapTop</p>
+          <p
+            className="showMore"
+            onClick={() => {
+              navigate('/product');
+            }}
+          >
+            Xem tất cả &gt;
+          </p>
         </div>
       ) : (
         ''

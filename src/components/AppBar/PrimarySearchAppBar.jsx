@@ -70,7 +70,15 @@ const PrimarySearchAppBar = () => {
           Sign In
         </p>
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <p
+          onClick={() => {
+            navigate('/profile');
+          }}
+        >
+          My account
+        </p>
+      </MenuItem>
     </Menu>
   );
 

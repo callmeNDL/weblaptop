@@ -51,3 +51,24 @@ input:focus {
 * {
   font-size: 13px;
 }
+
+.title {
+  margin: 0px;
+  padding: 0px;
+  border-style: none;
+  border-width: 1px;
+  border-color: unset;
+  opacity: 1;
+  color: rgb(27, 29, 41);
+  font-weight: 700;
+  text-decoration: unset;
+  font-size: 20px;
+  line-height: 28px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: unset;
+  max-width: unset;
+  min-width: unset;
+  transition: color 0.3s ease 0s;
+}

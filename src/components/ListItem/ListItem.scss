@@ -5,8 +5,16 @@
   margin-top: 30px;
 
   .titleItem {
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
+
+    .showMore {
+      cursor: pointer;
+      color: rgb(130, 134, 158);
+    }
+
+
   }
   .listItemBox {
     display: flex;

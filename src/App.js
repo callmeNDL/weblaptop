@@ -9,6 +9,7 @@ import Promo from './pages/Promo';
 import ItemDetail from './components/ItemDetail/ItemDetail';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/product" element={<Product />} />
         <Route exact path="/product/:productId" element={<ItemDetail />} />
         <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/signIn" element={<SignInPage />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/promo" element={<Promo />} />
