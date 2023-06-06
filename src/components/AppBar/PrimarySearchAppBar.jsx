@@ -132,15 +132,17 @@ const PrimarySearchAppBar = () => {
             alt="img-logo"
             onClick={handleClick}
           />
-          <div className={classes.SearchBox}>
-            <input
-              type="text"
-              className={classes.searchInput}
-              placeholder="Nhập từ khoá cần tìm"
-            />
-            <button className={classes.searchButton}>
-              <SearchIcon />
-            </button>
+          <div className={classes.searchContainer}>
+            <div className={classes.SearchBox}>
+              <input
+                type="text"
+                className={classes.searchInput}
+                placeholder="Nhập từ khoá cần tìm"
+              />
+              <button className={classes.searchButton}>
+                <SearchIcon />
+              </button>
+            </div>
           </div>
           <Box sx={{ flexGrow: 1 }} />
           <Box

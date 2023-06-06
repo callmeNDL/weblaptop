@@ -1,7 +1,9 @@
 import BasicBreadcrumbs from '../components/BreakCrum/BreakCrum';
 import '../assets/scss/Cart.scss';
 import { Container } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
+  const navigate = useNavigate();
   const breakItem = [
     {
       title: 'Trang chủ',
@@ -27,7 +29,14 @@ const Cart = () => {
               alt="no-img"
             />
             <p>Giỏ hàng chưa có sản phẩm nào</p>
-            <button className="button-primary">Mua sắm ngay</button>
+            <button
+              className="button-primary"
+              onClick={() => {
+                navigate('/product');
+              }}
+            >
+              Mua sắm ngay
+            </button>
           </div>
         )}
       </div>

@@ -7,16 +7,14 @@ import { Container } from '@mui/material';
 
 const Home = () => {
   return (
-    <div>
+    <>
       <SliderHome />
       <Container>
-        <div className="bg-container">
-          <TopLapTop />
-          <TopBrand />
-          <ListItem title={true} />
-        </div>
+        <TopLapTop />
+        <TopBrand />
+        <ListItem title={true} />
       </Container>
-    </div>
+    </>
   );
 };
 

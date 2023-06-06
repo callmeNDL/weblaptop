@@ -34,8 +34,11 @@ const useStyles = makeStyles(() => ({
     width: '50px',
     margin: '0 30px',
   },
+  searchContainer: {
+    width: '100%',
+  },
   SearchBox: {
-    minWidth: '500px',
+    maxWidth: '500px',
     backgroundColor: '#F5F5F5',
     display: 'flex',
     border: '1px solid #eaeaea',
@@ -44,6 +47,7 @@ const useStyles = makeStyles(() => ({
   searchInput: {
     width: '100%',
     borderRadius: '8px',
+    paddingLeft: '10px',
     backgroundColor: 'transparent',
     border: 'none',
     height: '36px',
