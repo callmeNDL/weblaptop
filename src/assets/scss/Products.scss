@@ -1,10 +1,11 @@
 .product-container {
-  margin-top: 30px;
   .product-box {
     display: flex;
     gap: 20px;
 
     .filter-box {
+      max-width: 200px;
+      height: max-content;
       border-radius: 0.5rem;
       padding: 0.75rem;
       background: white;
@@ -14,6 +15,7 @@
 
     .products-box {
       width: 100%;
+      margin-bottom: 20px;
       border-radius: 0.5rem;
       padding: 0.75rem;
       background: white;
@@ -144,4 +146,13 @@
       margin: 10px 0;
     }
   }
+}
+
+.show-more-filter {
+  padding: 5px 0;
+  color: #1990ff;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
 }
