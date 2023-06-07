@@ -7,7 +7,9 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 const Fillter = () => {
   const [value, setValue] = useState([0, 30000000]);
-  const [showMore, setShowMore] = useState(false);
+  const [showMoreBrand, setShowMoreBrand] = useState(false);
+  const [showMoreScreen, setShowMoreScreen] = useState(false);
+
   const classes = useStyles();
   const brandItem = [
     'ACER',
@@ -41,8 +43,8 @@ const Fillter = () => {
       <div className="item">
         <div className="subttile">Khoảng giá</div>
         <div className="price">
-          <span className="price-item">0đ</span>
-          <span className="price-item">30.000.000đ</span>
+          <span className="price-item">{numberWithCommas(value[0])}đ</span>
+          <span className="price-item">{numberWithCommas(value[1])}đ</span>
         </div>
         <Box sx={{ width: 160, margin: 'auto' }}>
           <Slider
@@ -60,7 +62,7 @@ const Fillter = () => {
       <div className="item">
         <div className="subttile">Thương hiệu</div>
         <FormGroup
-          className={`${classes.FormGroup} ${!showMore && classes.hidden}`}
+          className={`${classes.FormGroup} ${!showMoreBrand && classes.hidden}`}
         >
           {brandItem.map((item) => (
             <FormControlLabel
@@ -71,13 +73,15 @@ const Fillter = () => {
           ))}
         </FormGroup>
         <span
-          className="show-more-filter"
+          className={`show-more-filter show-more-filter${
+            showMoreBrand ? '-up' : '-down'
+          }`}
           onClick={() => {
-            setShowMore(!showMore);
+            setShowMoreBrand(!showMoreBrand);
           }}
         >
-          {showMore ? 'Ẩn bớt  ' : 'Xem thêm  '}{' '}
-          {showMore ? (
+          {showMoreBrand ? 'Ẩn bớt  ' : 'Xem thêm  '}{' '}
+          {showMoreBrand ? (
             <KeyboardDoubleArrowUpIcon />
           ) : (
             <KeyboardDoubleArrowDownIcon />
@@ -88,7 +92,11 @@ const Fillter = () => {
       </div>
       <div className="item">
         <div className="subttile">Kích thước màn hình</div>
-        <FormGroup className={classes.FormGroup}>
+        <FormGroup
+          className={`${classes.FormGroup} ${
+            !showMoreScreen && classes.hidden
+          }`}
+        >
           {screenItem.map((item) => (
             <FormControlLabel
               className={classes.label}
@@ -97,8 +105,20 @@ const Fillter = () => {
             />
           ))}
         </FormGroup>
-        <span className="show-more-filter">
-          Xem thêm <KeyboardDoubleArrowDownIcon />
+        <span
+          className={`show-more-filter show-more-filter${
+            showMoreScreen ? '-up' : '-down'
+          }`}
+          onClick={() => {
+            setShowMoreScreen(!showMoreScreen);
+          }}
+        >
+          {showMoreScreen ? 'Ẩn bớt  ' : 'Xem thêm  '}{' '}
+          {showMoreScreen ? (
+            <KeyboardDoubleArrowUpIcon />
+          ) : (
+            <KeyboardDoubleArrowDownIcon />
+          )}
         </span>
         <div className="line"></div>
       </div>
@@ -113,9 +133,6 @@ const Fillter = () => {
             />
           ))}
         </FormGroup>
-        <span className="show-more-filter">
-          Xem thêm <KeyboardDoubleArrowDownIcon />
-        </span>
         <div className="line"></div>
       </div>
       <div className="item">
@@ -129,10 +146,6 @@ const Fillter = () => {
             />
           ))}
         </FormGroup>
-        <span className="show-more-filter">
-          Xem thêm <KeyboardDoubleArrowDownIcon />
-        </span>
-        <div className="line"></div>
       </div>
     </div>
   );

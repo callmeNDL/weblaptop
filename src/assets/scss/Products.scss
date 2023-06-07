@@ -149,10 +149,17 @@
 }
 
 .show-more-filter {
-  padding: 5px 0;
+  padding-top: 10px;
   color: #1990ff;
   cursor: pointer;
   font-size: 13px;
   display: flex;
   justify-content: center;
+
+  &-down {
+    background-image: linear-gradient(rgb(252, 249, 249), rgb(208, 245, 245));
+  }
+  &-up {
+    background-image: linear-gradient(rgb(208, 245, 245), rgb(252, 249, 249));
+  }
 }
