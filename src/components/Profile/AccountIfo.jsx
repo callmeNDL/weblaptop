@@ -7,10 +7,12 @@ import {
   Radio,
   RadioGroup,
 } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import './Account.scss';
+
 const AccountIfo = () => {
   return (
-    <div className="">
+    <div className="account-info-box">
       <div className="account-infor box-container bg-white">
         <div className="title">Thông tin tài khoản</div>
         <FormControl variant="standard">
@@ -54,10 +56,14 @@ const AccountIfo = () => {
         <button>Cập nhật</button>
       </div>
       <div className="account-location">
-        <div>Địa chỉ mặc định</div>
-        <div>
+        <div className="title">Địa chỉ mặc định</div>
+        <div className="add-location">
           Bạn chưa có địa chỉ nhận hàng mặc định. Vui lòng chọn Thêm địa chỉ
           nhận hàng.
+        </div>
+        <div className="line"></div>
+        <div className="button-add-location">
+          <AddIcon /> Thêm địa chỉ nhận hàng
         </div>
       </div>
     </div>
