@@ -1,8 +1,6 @@
 .listItemContainer {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  background: white;
   margin-top: 30px;
+  padding: 0 10px;
 
   .titleItem {
     padding: 10px 20px;
@@ -13,8 +11,6 @@
       cursor: pointer;
       color: rgb(130, 134, 158);
     }
-
-
   }
   .listItemBox {
     display: flex;

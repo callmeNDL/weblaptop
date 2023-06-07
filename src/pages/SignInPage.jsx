@@ -3,9 +3,11 @@ import SignIn from '../components/SignIn/SignIn';
 
 const SignInPage = () => {
   return (
-    <Container>
-      <SignIn />
-    </Container>
+    <div className="bg-container padding-container">
+      <Container>
+        <SignIn />
+      </Container>
+    </div>
   );
 };
 

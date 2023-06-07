@@ -65,7 +65,7 @@ const ItemDetail = () => {
             ))}
           </div>
           <div className="line-bottom"></div>
-          <div className="css-17aam1">
+          <div className="product-decs">
             - CPU: Apple M1
             <br />
             - Màn hình: 13.3" IPS (2560 x 1600)
