@@ -157,9 +157,9 @@
   justify-content: center;
 
   &-down {
-    background-image: linear-gradient(rgb(252, 249, 249), rgb(208, 245, 245));
+    background-image: linear-gradient(rgb(255, 255, 255), rgb(208, 245, 245));
   }
   &-up {
-    background-image: linear-gradient(rgb(208, 245, 245), rgb(252, 249, 249));
+    background-image: linear-gradient(rgb(208, 245, 245), rgb(255, 255, 255));
   }
 }

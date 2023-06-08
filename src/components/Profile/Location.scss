@@ -1,0 +1,36 @@
+.location-container {
+  width: 100%;
+  min-height: 500px;
+  padding-top: 10px;
+
+  .location-content {
+    margin-top: 10px;
+    overflow: hidden;
+    line-height: 1rem;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    user-select: none;
+    text-decoration: none;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    padding: 1rem 0px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(20, 53, 195);
+    margin-bottom: 4px;
+    border-radius: 8px;
+    border: 1px dashed rgb(216, 216, 216);
+
+    .add-location {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+  }
+}
