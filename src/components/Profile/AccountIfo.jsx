@@ -56,6 +56,10 @@ const AccountIfo = () => {
         >
           <AddIcon /> Thêm địa chỉ nhận hàng
         </div>
+        <div className="line"></div>
+        <div className="button-add-location">
+          <AddIcon /> Thêm địa chỉ nhận hàng
+        </div>
       </div>
       <FormDialog open={openDialog} title="Thông tin người nhận hàng" handleClose={handleCloseDialog} />
     </div>
