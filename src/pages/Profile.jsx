@@ -7,11 +7,8 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import '../components/Profile/Account.scss';
 import { useState } from 'react';
 import Commande from '../components/Profile/Commande';
-<<<<<<< HEAD
 import Location from '../components/Profile/Location';
 import Notification from '../components/Profile/Notification';
-=======
->>>>>>> f1f05f93abdda915191b6945f73c9a7ce0758d8e
 
 const Profile = () => {
   const [activeProfile, setActiveProfile] = useState('Thông tin cá nhân');
@@ -70,11 +67,8 @@ const Profile = () => {
         </div>
         {activeProfile === 'Thông tin cá nhân' && <AccountIfo />}
         {activeProfile === 'Quản lý đơn hàng' && <Commande />}
-<<<<<<< HEAD
         {activeProfile === 'Số địa chỉ' && <Location />}
         {activeProfile === 'Thông báo' && <Notification />}
-=======
->>>>>>> f1f05f93abdda915191b6945f73c9a7ce0758d8e
       </Container>
     </div>
   );
