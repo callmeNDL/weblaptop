@@ -5,24 +5,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { URL_LOC_VN } from '../../shared/constant/URL';
-import request from '../../services/request/request-service';
+import { useState } from 'react';
 
 const FormDialog = ({ children, ...props }) => {
   const [rowData, setRowData] = useState({});
   const handleChange = () => {};
-  const [loactionType1, setLocationType1] = useState([]);
-
-  useEffect(async () => {
-    try {
-      const url = `${URL_LOC_VN}?depth=1`;
-      const res = await request.get(url);
-      setLocationType1(res);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
 
   return (
     <Dialog open={props.open} onClose={props.handleClose}>
