@@ -98,6 +98,7 @@ const Cart = () => {
   useEffect(() => {
     const listCart = [
       {
+        id: 1,
         displaySku: '230402670',
         name: 'Máy tính xách tay/ Laptop Acer Nitro 16 Phoenix AN16-41-R5M4 (NH.QKBSV.003) (AMD Ryzen 5-7535HS) (Đen)',
         imageUrl:
