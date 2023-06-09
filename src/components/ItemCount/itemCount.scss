@@ -1,5 +1,5 @@
 .count-container {
-  width: 100px;
+  width: 75px;
   height: 32px;
   display: flex;
   justify-content: space-between;
@@ -9,7 +9,26 @@
   padding: 0 10px;
 
   .button-count {
-    font-size: 35px;
-    margin-top: -10px;
+    svg {
+      display: flex;
+    }
+
+    &-disable {
+      svg {
+        color: rgba(16, 16, 16, 0.3);
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+.count-box {
+  display: flex;
+  flex-direction: column;
+
+  .delete {
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+    color: rgb(7, 95, 227);
   }
 }
