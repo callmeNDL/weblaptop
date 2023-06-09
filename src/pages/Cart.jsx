@@ -1,6 +1,6 @@
 import BasicBreadcrumbs from '../components/BreakCrum/BreakCrum';
 import { makeStyles } from '@mui/styles';
-import { Container } from '@mui/material';
+import { Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import '../assets/scss/Cart.scss';
@@ -35,6 +35,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const [listCart, setListCart] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const breakItem = [
     {
@@ -55,7 +56,6 @@ const Cart = () => {
       minWidth: 400,
       renderCell: (params) => (
         <div className="item-cart" style={{ width: 450 }}>
-          {console.log(params, 'params')}
           <img src={params.row.imageUrl} alt="img-product-cart" />
           <div className="item-cart-des">
             <div className="name">{params.row.name}</div>
@@ -77,12 +77,17 @@ const Cart = () => {
       minWidth: 110,
       renderCell: (params) => (
         <ItemCount
-          count={1}
+          count={params.row.count}
           handDecrement={() => {
-            handleDecrement(params.row.count);
+            if (params?.row?.count > 1) {
+              handleDecrement(params.row);
+            }
           }}
           handIncrement={() => {
-            handleIncrement(params.row.count);
+            handleIncrement(params.row);
+          }}
+          deleteItem={() => {
+            deleteItem(params.row);
           }}
         />
       ),
@@ -132,22 +137,53 @@ const Cart = () => {
     setListCart(listCart);
   }, []);
 
-  const handleDecrement = (id) => {};
-  const handleIncrement = (id) => {};
+  const handleDecrement = (row) => {
+    const newList = listCart.map((item) => {
+      if (item.id === row.id) {
+        return { ...item, count: item.count - 1 };
+      }
+      return item;
+    });
+    setListCart(newList);
+  };
+  const handleIncrement = (row) => {
+    const newList = listCart.map((item) => {
+      if (item.id === row.id) {
+        return { ...item, count: item.count + 1 };
+      }
+      return item;
+    });
+    setListCart(newList);
+  };
+
+  const deleteItem = (row) => {
+    const newList = listCart.filter((item) => item.id !== row.id);
+    setListCart(newList);
+  };
+
+  const handeDelteCart = () => {
+    setListCart([]);
+    setOpen(false);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className="bg-container">
       <Container>
         <div className="cart-container bg-primary">
           <BasicBreadcrumbs data={breakItem} />
+
           {listCart.length > 0 ? (
             <div className="list-cart-container">
               <div className="list-cart-content">
-                <div className="list-cart-title">
-                  <h1>Giỏ hàng</h1>
-                  <span>Xóa tất cả</span>
-                </div>
                 <div style={{ height: 'auto', width: '100%' }}>
+                  <div className="list-cart-title">
+                    <h1>Giỏ hàng</h1>
+                    <span onClick={() => setOpen(true)}>Xóa tất cả</span>
+                  </div>
                   <DataGrid
                     className={classes.tableCart}
                     rows={listCart}
@@ -155,12 +191,26 @@ const Cart = () => {
                     columnVisibilityModel={{
                       id: false,
                     }}
-                    disableColumnMenu
-                    checkboxSelection
+                    // disableColumnMenu
+                    // checkboxSelection
+                    // disableSelectionOnClick
                     hideFooter
-                    autoHeight
+                    // autoHeight
                     rowHeight={100}
                   />
+                </div>
+                <div className="total-price">
+                  <div className="title">Thanh toán</div>
+                  <div className="temporary-price">
+                    <div className="temporary-price-title">Tổng tạm tính</div>
+                    <div className="price">10.000.000đ</div>
+                  </div>
+                  <div className="temporary-price">
+                    <div className="temporary-price-title">Thành tiền</div>
+                    <div className="price price-into">10.000.000đ</div>
+                  </div>
+                  <div className="title-vat">(Đã bao gồm thuế)</div>
+                  <button className="button-primary">TIẾP TỤC</button>
                 </div>
               </div>
             </div>
@@ -179,6 +229,28 @@ const Cart = () => {
             </div>
           )}
         </div>
+
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{'Chú ý'}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Bạn có thật sự muốn xoá sản phẩm ra khỏi giỏ hàng?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <button className="button-second" onClick={handleClose}>
+              Huỷ bỏ
+            </button>
+            <button className="button-primary" onClick={handeDelteCart} autoFocus>
+              Đồng ý
+            </button>
+          </DialogActions>
+        </Dialog>
       </Container>
     </div>
   );

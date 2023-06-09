@@ -1,5 +1,5 @@
 .count-container {
-  width: 100px;
+  width: 75px;
   height: 32px;
   display: flex;
   justify-content: space-between;
@@ -19,5 +19,16 @@
         cursor: not-allowed;
       }
     }
+  }
+}
+.count-box {
+  display: flex;
+  flex-direction: column;
+
+  .delete {
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+    color: rgb(7, 95, 227);
   }
 }
