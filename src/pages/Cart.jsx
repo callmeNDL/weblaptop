@@ -67,7 +67,7 @@ const Cart = () => {
     {
       field: 'displayPrice',
       headerName: 'Đơn giá',
-      minWidth: 100,
+      minWidth: 120,
       renderCell: (params) => <div className={classes.price}>{params.row.displayPrice}</div>,
     },
     {
@@ -95,7 +95,7 @@ const Cart = () => {
     {
       field: 'rowTotal',
       headerName: 'Thành tiền',
-      minWidth: 100,
+      minWidth: 120,
       renderCell: (params) => <div className={classes.price}>{params.row.displayPrice}</div>,
     },
   ];
