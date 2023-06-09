@@ -1,16 +1,41 @@
 import BasicBreadcrumbs from '../components/BreakCrum/BreakCrum';
-import '../assets/scss/Cart.scss';
-import { Checkbox, Container } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import '../assets/scss/Cart.scss';
 import ItemCount from '../components/ItemCount/ItemCount';
+import { useEffect, useState } from 'react';
+
+const useStyles = makeStyles((theme) => ({
+  tableCart: {
+    border: 'none !important',
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    borderColor: 'white',
+
+    '& div.MuiDataGrid-withBorderColor': {
+      borderColor: 'white',
+    },
+  },
+  price: {
+    borderStyle: 'none',
+    borderWidth: '1px',
+    borderColor: 'unset',
+    opacity: '1',
+    width: 'max-content',
+    display: 'inline-block',
+    color: 'inherit',
+    fontSize: '1rem',
+    fontWeight: 'bold',
+  },
+}));
+
 const Cart = () => {
   const navigate = useNavigate();
-  const [checked, setChecked] = useState(true);
+  const classes = useStyles();
+  const [listCart, setListCart] = useState([]);
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
   const breakItem = [
     {
       title: 'Trang chủ',
@@ -22,111 +47,139 @@ const Cart = () => {
     },
   ];
 
-  const listCart = [
+  const columns = [
+    { field: 'id', headerName: 'ID', minWidth: 30 },
     {
-      id: 'cd1f8ffc-a568-40f3-ab81-dc5bc67d0ebf',
-      sku: '201201617',
-      displaySku: '201201617',
-      name: 'Máy tính xách tay/ Laptop MacBook Air 2020 13.3" MGN63SA/A (M1/8GB/SSD256GB) (Xám)',
-      imageUrl:
-        'https://lh3.googleusercontent.com/Ezh1zisXToaMPP30pXE50dnotXpEyxnGsYpbd6uZc6jEWRWhMrMY2EDuXNcWPhw4nfcwwC-mGGVEkkRtRSJE0P3hRPuvCjw',
-      uomCode: '81',
-      barcodeOrSerials: '056257',
-      tags: [],
-      attributeDescription: null,
-      quantity: 1.0,
-      displayTotalAvailable: 'Chỉ còn 2 sản phẩm',
-      available: 2.0,
-      sellPrice: 18590000,
-      displayPrice: '18.590.000₫',
-      strikeThroughDisplayPrice: '28.990.000₫',
-      promotionDiscount: 0,
-      onDemandDiscount: 0,
-      maxOnDemandDiscountPercent: 0.0,
-      consultationFee: 0,
-      maxConsultationFee: 0,
-      price: 18590000,
-      rowTotal: 18590000,
-      isSelected: true,
-      isDisabled: false,
-      childItems: [],
-      promotions: [],
-      title: null,
-      remainingSeconds: null,
-      policies: [],
-      allowedUserActions: [
-        'CHANGE_QUANTITY',
-        'TOGGLE',
-        'DELETE',
-        'OPEN_PRODUCT_DETAIL',
-      ],
+      field: 'name',
+      headerName: 'Sản phẩm',
+      minWidth: 400,
+      renderCell: (params) => (
+        <div className="item-cart" style={{ width: 450 }}>
+          {console.log(params, 'params')}
+          <img src={params.row.imageUrl} alt="img-product-cart" />
+          <div className="item-cart-des">
+            <div className="name">{params.row.name}</div>
+            <div>MSP: 123456464646</div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      field: 'displayPrice',
+      headerName: 'Đơn giá',
+      minWidth: 100,
+      renderCell: (params) => <div className={classes.price}>{params.row.displayPrice}</div>,
+    },
+    {
+      field: 'count',
+      headerName: 'Số lượng',
+      type: 'number',
+      minWidth: 110,
+      renderCell: (params) => (
+        <ItemCount
+          count={1}
+          handDecrement={() => {
+            handleDecrement(params.row.count);
+          }}
+          handIncrement={() => {
+            handleIncrement(params.row.count);
+          }}
+        />
+      ),
+    },
+    {
+      field: 'rowTotal',
+      headerName: 'Thành tiền',
+      minWidth: 100,
+      renderCell: (params) => <div className={classes.price}>{params.row.displayPrice}</div>,
     },
   ];
 
-  console.log(listCart.length, 'legth');
+  useEffect(() => {
+    const listCart = [
+      {
+        displaySku: '230402670',
+        name: 'Máy tính xách tay/ Laptop Acer Nitro 16 Phoenix AN16-41-R5M4 (NH.QKBSV.003) (AMD Ryzen 5-7535HS) (Đen)',
+        imageUrl:
+          'https://lh3.googleusercontent.com/0qQpKIRxvCY_jgUeXDqo2EzU4lOpbxBxOIPiGXzwND2XVjBGZDk5dJljXi1ZGtoaXpi90vJctb_XF4E_Ex-7N5cV67ezlQc',
+        count: 1.0,
+        displayTotalAvailable: '',
+        available: 0.0,
+        sellPrice: 29990000,
+        displayPrice: '29.990.000₫',
+        promotionDiscount: 0,
+        price: 29990000,
+        rowTotal: 29990000,
+      },
+      {
+        id: 'd227ebbc-f3d4-485d-ae83-c82d5c0c279d',
+        name: 'Máy tính xách tay/ Laptop HP 15s-fq2712TU (7C0X2PA) (i3-1115G4) (Bạc)',
+        imageUrl:
+          'https://lh3.googleusercontent.com/PjhHXXreUCNNLITAJ3gfR2heYwi7JRjbjIwC4Rh-zDi8cUqQT0CoVQVQ0WzoOuKG487h__xpEZQ_zQDXfWvRWWrKDYFSmc0wZA',
+        attributeDescription: null,
+        count: 1.0,
+        displayTotalAvailable: '',
+        available: 0.0,
+        sellPrice: 11190000,
+        displayPrice: '11.190.000₫',
+        strikeThroughDisplayPrice: '12.690.000₫',
+        promotionDiscount: 0,
+        price: 11190000,
+        rowTotal: 11190000,
+      },
+    ];
+    setListCart(listCart);
+  }, []);
+
+  const handleDecrement = (id) => {};
+  const handleIncrement = (id) => {};
 
   return (
-    <Container>
-      <div className="cart-container bg-primary">
-        <BasicBreadcrumbs data={breakItem} />
-        {listCart.length > 0 ? (
-          <div className="list-cart-container">
-            <div className="list-cart-title">
-              <h1>Giỏ hàng</h1>
-              <span>Xóa tất cả</span>
-            </div>
-            <div className="list-cart-content">
-              <ul className="cart-title">
-                <li>Web lap Top</li>
-                <li>Đơn giá</li>
-                <li>Số lượng</li>
-                <li>Thành tiền</li>
-              </ul>
-              <div className="list-product-cart">
-                <div className="item-cart">
-                  <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
-                    inputProps={{ 'aria-label': 'controlled' }}
+    <div className="bg-container">
+      <Container>
+        <div className="cart-container bg-primary">
+          <BasicBreadcrumbs data={breakItem} />
+          {listCart.length > 0 ? (
+            <div className="list-cart-container">
+              <div className="list-cart-content">
+                <div className="list-cart-title">
+                  <h1>Giỏ hàng</h1>
+                  <span>Xóa tất cả</span>
+                </div>
+                <div style={{ height: 'auto', width: '100%' }}>
+                  <DataGrid
+                    className={classes.tableCart}
+                    rows={listCart}
+                    columns={columns}
+                    columnVisibilityModel={{
+                      id: false,
+                    }}
+                    disableColumnMenu
+                    checkboxSelection
+                    hideFooter
+                    autoHeight
+                    rowHeight={100}
                   />
-                  <img src={listCart[0].imageUrl} alt="img-cart" />
-                  <div className="item-info">
-                    <div>{listCart[0].name}</div>
-                    <div>MSP:{listCart[0].sku}</div>
-                    <div>chỉ còn 2 sản phẩm</div>
-                  </div>
-                  <div className="item-price">
-                    <div className="price-promo">{listCart[0].price}</div>
-                    <div className="price-default">
-                      {listCart[0].strikeThroughDisplayPrice}
-                    </div>
-                  </div>
-                  <div className="item-count">
-                    <ItemCount />
-                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="no-item">
-            <img
-              src="https://shopfront-cdn.tekoapis.com/static/empty_cart.png"
-              alt="no-img"
-            />
-            <p>Giỏ hàng chưa có sản phẩm nào</p>
-            <button
-              className="button-primary"
-              onClick={() => {
-                navigate('/product');
-              }}
-            >
-              Mua sắm ngay
-            </button>
-          </div>
-        )}
-      </div>
-    </Container>
+          ) : (
+            <div className="no-item">
+              <img src="https://shopfront-cdn.tekoapis.com/static/empty_cart.png" alt="no-img" />
+              <p>Giỏ hàng chưa có sản phẩm nào</p>
+              <button
+                className="button-primary"
+                onClick={() => {
+                  navigate('/product');
+                }}
+              >
+                Mua sắm ngay
+              </button>
+            </div>
+          )}
+        </div>
+      </Container>
+    </div>
   );
 };
 

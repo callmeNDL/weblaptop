@@ -17,3 +17,28 @@
     max-width: 200px;
   }
 }
+.list-cart-content {
+  max-width: 780px;
+  .item-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
+
+    &-des {
+      margin-left: 20px;
+      max-width: calc(100% - 80px);
+      .name {
+        white-space: normal !important;
+        :hover {
+          color: #1435c3;
+        }
+      }
+    }
+  }
+}

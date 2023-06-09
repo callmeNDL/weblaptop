@@ -9,7 +9,15 @@
   padding: 0 10px;
 
   .button-count {
-    font-size: 35px;
-    margin-top: -10px;
+    svg {
+      display: flex;
+    }
+
+    &-disable {
+      svg {
+        color: rgba(16, 16, 16, 0.3);
+        cursor: not-allowed;
+      }
+    }
   }
 }
