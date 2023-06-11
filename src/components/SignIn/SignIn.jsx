@@ -11,19 +11,27 @@ import Container from '@mui/material/Container';
 import LoginBG from '../../assets/imgs/login-bg.png';
 import Copyright from '../Copyright/Copyright';
 import request from '../../services/request/request-service';
+import { useEffect } from 'react';
 
-export default function SignIn() {
+const SignIn = () => {
   const handleSubmit = async (event) => {
-    // event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    event.preventDefault();
 
-    const res = await request.post('/login', data);
+    const data = new FormData(event.currentTarget);
+    const res = await request.get('/loaisanpham');
     console.log(res);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
   };
+
+  // useEffect(() => {
+  //   axios
+  //     .get('https://jsonplaceholder.typicode.com/todos/1')
+  //     .then((req) => {
+  //       console.log(req);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <div className="box-white">
@@ -95,4 +103,6 @@ export default function SignIn() {
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </div>
   );
-}
+};
+
+export default SignIn;

@@ -66,7 +66,7 @@ const TopBrand = () => {
       <div className="topBrand-title">Thương hiệu nổi bật</div>
       <Slider {...settings}>
         {listTopBrand.map((item) => (
-          <div className="topBrand-box">
+          <div className="topBrand-box" key={item.id}>
             <div className="img-box">
               <img src={item.img} alt={`img- ${item.name}`} />
             </div>
