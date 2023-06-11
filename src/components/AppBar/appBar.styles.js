@@ -23,7 +23,6 @@ const useStyles = makeStyles(() => ({
     },
   },
   Profile: {
-    minWidth: '150px',
     display: 'flex',
     justifyContent: 'space-around',
 
