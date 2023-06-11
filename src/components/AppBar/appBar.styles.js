@@ -2,11 +2,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   AppBar: {
-    boxShadow: 'none !important',
-    backgroundColor: 'white !important',
+    backgroundColor: 'white',
     height: '88px',
-    color: 'rgb(130, 134, 158) !important',
+    color: 'rgb(130, 134, 158)',
     fontWeight: 500,
+    boxShadow: 'none',
+
     '& div.MuiToolbar-root': {
       height: '100%',
     },

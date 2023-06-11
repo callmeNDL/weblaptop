@@ -67,7 +67,7 @@ const Cart = () => {
     {
       field: 'displayPrice',
       headerName: 'Đơn giá',
-      minWidth: 120,
+      minWidth: 100,
       renderCell: (params) => <div className={classes.price}>{params.row.displayPrice}</div>,
     },
     {
@@ -95,7 +95,7 @@ const Cart = () => {
     {
       field: 'rowTotal',
       headerName: 'Thành tiền',
-      minWidth: 120,
+      minWidth: 100,
       renderCell: (params) => <div className={classes.price}>{params.row.displayPrice}</div>,
     },
   ];
@@ -191,11 +191,11 @@ const Cart = () => {
                     columnVisibilityModel={{
                       id: false,
                     }}
-                    // disableColumnMenu
-                    // checkboxSelection
-                    // disableSelectionOnClick
+                    disableColumnMenu
+                    checkboxSelection
+                    disableRowSelectionOnClick
                     hideFooter
-                    // autoHeight
+                    autoHeight
                     rowHeight={100}
                   />
                 </div>

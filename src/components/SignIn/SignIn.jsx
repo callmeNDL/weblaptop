@@ -35,11 +35,7 @@ export default function SignIn() {
           justifyContent: 'center',
         }}
       >
-        <img
-          src={LoginBG}
-          alt="login-bg"
-          style={{ width: '310px', height: '360px', marginRight: '30px' }}
-        />
+        <img src={LoginBG} alt="login-bg" style={{ width: '310px', height: '360px', marginRight: '30px' }} />
 
         <Container component="main" maxWidth="xs" style={{ margin: 0 }}>
           <CssBaseline />
@@ -57,12 +53,7 @@ export default function SignIn() {
             <Typography component="h1" variant="h5">
               Đăng nhập
             </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ mt: 1 }}
-            >
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -83,16 +74,7 @@ export default function SignIn() {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Đăng nhập
               </Button>
               <Grid container>

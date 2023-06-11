@@ -73,6 +73,15 @@ const PrimarySearchAppBar = () => {
       <MenuItem onClick={handleMenuClose}>
         <p
           onClick={() => {
+            navigate('/signup');
+          }}
+        >
+          Sign Up
+        </p>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <p
+          onClick={() => {
             navigate('/profile');
           }}
         >
@@ -83,79 +92,26 @@ const PrimarySearchAppBar = () => {
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <ShoppingCartIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className={classes.AppBar}>
-        <Toolbar>
-          <img
-            className={classes.img}
-            src={favicon}
-            alt="img-logo"
-            onClick={handleClick}
-          />
+      <AppBar position="static" className={classes.AppBar} style={{ boxShadow: 'none' }}>
+        <Toolbar style={{ backgroundColor: 'white' }}>
+          <img className={classes.img} src={favicon} alt="img-logo" onClick={handleClick} />
           <div className={classes.searchContainer}>
             <div className={classes.SearchBox}>
-              <input
-                type="text"
-                className={classes.searchInput}
-                placeholder="Nhập từ khoá cần tìm"
-              />
+              <input type="text" className={classes.searchInput} placeholder="Nhập từ khoá cần tìm" />
               <button className={classes.searchButton}>
                 <SearchIcon />
               </button>
             </div>
           </div>
           <Box sx={{ flexGrow: 1 }} />
-          <Box
-            className={classes.Profile}
-            sx={{ display: { xs: 'none', md: 'flex' } }}
-          >
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
+          <Box className={classes.Profile} sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <IconButton size="large" aria-label="show 4 new mails" color="82869E">
               <Badge badgeContent={4} color="error">
                 <ShoppingCartIcon
+                  color="#82869E"
                   onClick={() => {
                     navigate('/cart');
                   }}
@@ -169,7 +125,7 @@ const PrimarySearchAppBar = () => {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              color="#82869E"
             >
               <AccountCircle />
             </IconButton>
@@ -181,14 +137,13 @@ const PrimarySearchAppBar = () => {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
+              color="#82869E"
             >
               <MoreIcon />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
       {renderMenu}
     </Box>
   );
