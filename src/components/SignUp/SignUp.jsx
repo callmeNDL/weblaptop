@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,17 +12,67 @@ import Container from '@mui/material/Container';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Copyright from '../Copyright/Copyright';
-import { useDispatch } from 'react-redux';
-import { setCurrentUserAction } from '../../redux/user/user.actions';
+import request from '../../services/request/request-service';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function SignUp() {
-  const [age, setAge] = useState('');
+  const [province, setProvince] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [ward, setWard] = useState([]);
+
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
+    ngaySinh: '2001-01-14',
   });
+
+  useEffect(() => {
+    const loadProvince = async () => {
+      try {
+        const req = await request.get('/province');
+        if (req && req.data) {
+          setProvince(req.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadProvince();
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    const loadDistrict = async () => {
+      try {
+        const req = await request.get(`/district/${credentials.province}`);
+        if (req && req.data) {
+          setDistrict(req.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (credentials && credentials.province) {
+      loadDistrict();
+    }
+    return () => {};
+  }, [credentials.province]);
+
+  useEffect(() => {
+    const loadWard = async () => {
+      try {
+        const req = await request.get(`/ward/${credentials.district}`);
+        if (req && req.data) {
+          setWard(req.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (credentials && credentials.district) {
+      loadWard();
+    }
+    return () => {};
+  }, [credentials.district]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,10 +82,17 @@ export default function SignUp() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(setCurrentUserAction(credentials));
+    try {
+      const res = await request.post('/customer/register', credentials);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  console.log(credentials, 'credentials');
 
   return (
     <div className="bg-container">
@@ -62,19 +117,36 @@ export default function SignUp() {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
-                    name="fullname"
+                    name="hoTenLot"
                     required
                     fullWidth
                     id="hoTenLot"
                     label="Họ va tên lót"
+                    onChange={handleChange}
                     autoFocus
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField required fullWidth id="ten" label="Ten" name="name" autoComplete="family-name" />
+                  <TextField
+                    required
+                    fullWidth
+                    id="ten"
+                    label="Ten"
+                    name="ten"
+                    autoComplete="family-name"
+                    onChange={handleChange}
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField required fullWidth id="email" label="Email" name="email" autoComplete="email" />
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
+                    onChange={handleChange}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -85,10 +157,30 @@ export default function SignUp() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    onChange={handleChange}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField required fullWidth name="sdt" label="SDT" id="sdt" autoComplete="new-password" />
+                  <TextField
+                    required
+                    fullWidth
+                    name="username"
+                    label="Username"
+                    id="username"
+                    autoComplete="new-username"
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="soDienThoai"
+                    label="SDT"
+                    id="soDienThoai"
+                    autoComplete="new-password"
+                    onChange={handleChange}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
@@ -96,13 +188,18 @@ export default function SignUp() {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={age}
-                      label="Age"
+                      value={credentials && credentials.province ? credentials.province : ''}
+                      label="province"
+                      name="province"
                       onChange={handleChange}
                     >
-                      <MenuItem value={10}>Tp HCM</MenuItem>
-                      <MenuItem value={20}>Quy Nhơn</MenuItem>
-                      <MenuItem value={30}>Bến Tre</MenuItem>
+                      {province.map(({ id, name, code }) => {
+                        return (
+                          <MenuItem value={id} key={id}>
+                            {name}
+                          </MenuItem>
+                        );
+                      })}
                     </Select>
                   </FormControl>
                 </Grid>
@@ -112,13 +209,19 @@ export default function SignUp() {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={age}
-                      label="Age"
+                      value={credentials && credentials.district ? credentials.district : ''}
+                      label="district"
+                      name="district"
                       onChange={handleChange}
                     >
-                      <MenuItem value={10}>Quận 1</MenuItem>
-                      <MenuItem value={20}>Quận 2</MenuItem>
-                      <MenuItem value={30}>Quận 3</MenuItem>
+                      {district &&
+                        district.map((item) => {
+                          return (
+                            <MenuItem key={item.id} value={item.id}>
+                              {item.name}
+                            </MenuItem>
+                          );
+                        })}
                     </Select>
                   </FormControl>
                 </Grid>
@@ -128,21 +231,32 @@ export default function SignUp() {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={age}
-                      label="Age"
+                      value={credentials && credentials.ward ? credentials.ward : ''}
+                      label="ward"
+                      name="ward"
                       onChange={handleChange}
                     >
-                      <MenuItem value={10}>Phường 1</MenuItem>
-                      <MenuItem value={20}>Phường 2</MenuItem>
-                      <MenuItem value={30}>Phường 3</MenuItem>
+                      {ward.map(({ id, name, code }) => {
+                        return (
+                          <MenuItem value={id} key={id}>
+                            {name}
+                          </MenuItem>
+                        );
+                      })}
                     </Select>
                   </FormControl>
                 </Grid>
 
                 <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  <TextField
+                    autoComplete="given-name"
+                    name="diaChi"
+                    required
+                    fullWidth
+                    id="diaChi"
+                    label="Địa chỉ"
+                    autoFocus
+                    onChange={handleChange}
                   />
                 </Grid>
               </Grid>
