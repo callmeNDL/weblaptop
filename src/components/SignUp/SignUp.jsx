@@ -15,7 +15,6 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Copyright from '../Copyright/Copyright';
 import { useDispatch } from 'react-redux';
-import { setCurrentUserAction } from '../../redux/user/user.actions';
 
 export default function SignUp() {
   const [age, setAge] = useState('');
@@ -36,7 +35,6 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(setCurrentUserAction(credentials));
   };
 
   return (
