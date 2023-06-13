@@ -30,3 +30,10 @@
   background-color: #f8f8fc;
   margin: 10px 0px;
 }
+
+.fixed {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  top: 0;
+}

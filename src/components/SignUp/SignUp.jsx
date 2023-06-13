@@ -14,20 +14,29 @@ import Container from '@mui/material/Container';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Copyright from '../Copyright/Copyright';
+import { useDispatch } from 'react-redux';
+import { setCurrentUserAction } from '../../redux/user/user.actions';
 
 export default function SignUp() {
   const [age, setAge] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: '',
+  });
+
   const handleChange = (event) => {
-    setAge(event.target.value);
+    const { name, value } = event.target;
+    setCredentials({
+      ...credentials,
+      [name]: value,
+    });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    dispatch(setCurrentUserAction(credentials));
   };
 
   return (
@@ -48,17 +57,12 @@ export default function SignUp() {
             <Typography component="h1" variant="h5">
               Đăng ký
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
-                    name="hoTenLot"
+                    name="fullname"
                     required
                     fullWidth
                     id="hoTenLot"
@@ -67,24 +71,10 @@ export default function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="ten"
-                    label="Ten"
-                    name="ten"
-                    autoComplete="family-name"
-                  />
+                  <TextField required fullWidth id="ten" label="Ten" name="name" autoComplete="family-name" />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="email"
-                  />
+                  <TextField required fullWidth id="email" label="Email" name="email" autoComplete="email" />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -98,20 +88,11 @@ export default function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="sdt"
-                    label="SDT"
-                    id="sdt"
-                    autoComplete="new-password"
-                  />
+                  <TextField required fullWidth name="sdt" label="SDT" id="sdt" autoComplete="new-password" />
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Thành phố / Tỉnh
-                    </InputLabel>
+                    <InputLabel id="demo-simple-select-label">Thành phố / Tỉnh</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
@@ -127,9 +108,7 @@ export default function SignUp() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Quận / Huyện
-                    </InputLabel>
+                    <InputLabel id="demo-simple-select-label">Quận / Huyện</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
@@ -145,9 +124,7 @@ export default function SignUp() {
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Phường
-                    </InputLabel>
+                    <InputLabel id="demo-simple-select-label">Phường</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
@@ -164,19 +141,12 @@ export default function SignUp() {
 
                 <Grid item xs={12}>
                   <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
                     label="I want to receive inspiration, marketing promotions and updates via email."
                   />
                 </Grid>
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Đăng ký
               </Button>
               <Grid container justifyContent="flex-end">

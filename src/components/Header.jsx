@@ -2,8 +2,36 @@ import hedaerImg from '../assets/imgs/header-img.webp';
 import PrimarySearchAppBar from './AppBar/PrimarySearchAppBar';
 import '../assets/scss/Header.scss';
 import { Container } from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
 
 const Header = () => {
+  const [scrollDirection, setScrollDirection] = useState(null);
+  const searchRef = useRef();
+
+  useEffect(() => {
+    const updateScrollDirection = () => {
+      const scrollY = window.pageYOffset;
+      const direction = scrollY > 88 ? 'down' : 'up';
+      if (direction && direction !== scrollDirection) {
+        setScrollDirection(direction);
+      }
+    };
+    window.addEventListener('scroll', updateScrollDirection); // add event listener
+    return () => {
+      window.removeEventListener('scroll', updateScrollDirection); // clean up
+    };
+  }, [scrollDirection]);
+
+  useEffect(() => {
+    if (searchRef && searchRef.current && scrollDirection) {
+      if (scrollDirection === 'down') {
+        searchRef.current.classList.add('fixed');
+      } else {
+        searchRef.current.classList.remove('fixed');
+      }
+    }
+  }, [scrollDirection]);
+
   return (
     <header>
       <div>
@@ -23,10 +51,8 @@ const Header = () => {
           </div>
         </Container>
       </div>
-      <div className="bg-second">
-        <Container>
-          <PrimarySearchAppBar />
-        </Container>
+      <div className="bg-second" ref={searchRef}>
+        <PrimarySearchAppBar />
       </div>
     </header>
   );

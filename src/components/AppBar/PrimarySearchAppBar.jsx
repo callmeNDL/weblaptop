@@ -13,9 +13,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import useStyles from './appBar.styles';
 import favicon from '../../assets/imgs/favicon.png';
+import { Container } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const PrimarySearchAppBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const user = useSelector((state) => state.user);
+
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const classes = useStyles();
   const navigate = useNavigate();
@@ -61,15 +65,18 @@ const PrimarySearchAppBar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
-        <p
-          onClick={() => {
-            navigate('/signin');
-          }}
-        >
-          Sign In
-        </p>
-      </MenuItem>
+      {!user.userId && (
+        <MenuItem onClick={handleMenuClose}>
+          <p
+            onClick={() => {
+              navigate('/signin');
+            }}
+          >
+            Sign In
+          </p>
+        </MenuItem>
+      )}
+
       <MenuItem onClick={handleMenuClose}>
         <p
           onClick={() => {
@@ -94,58 +101,60 @@ const PrimarySearchAppBar = () => {
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className={classes.AppBar} style={{ boxShadow: 'none' }}>
-        <Toolbar style={{ backgroundColor: 'white' }}>
-          <img className={classes.img} src={favicon} alt="img-logo" onClick={handleClick} />
-          <div className={classes.searchContainer}>
-            <div className={classes.SearchBox}>
-              <input type="text" className={classes.searchInput} placeholder="Nhập từ khoá cần tìm" />
-              <button className={classes.searchButton}>
-                <SearchIcon />
-              </button>
+    <Container>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" className={classes.AppBar} style={{ boxShadow: 'none' }}>
+          <Toolbar style={{ backgroundColor: 'white' }}>
+            <img className={classes.img} src={favicon} alt="img-logo" onClick={handleClick} />
+            <div className={classes.searchContainer}>
+              <div className={classes.SearchBox}>
+                <input type="text" className={classes.searchInput} placeholder="Nhập từ khoá cần tìm" />
+                <button className={classes.searchButton}>
+                  <SearchIcon />
+                </button>
+              </div>
             </div>
-          </div>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box className={classes.Profile} sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="82869E">
-              <Badge badgeContent={4} color="error">
-                <ShoppingCartIcon
-                  color="#82869E"
-                  onClick={() => {
-                    navigate('/cart');
-                  }}
-                />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="#82869E"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="#82869E"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      {renderMenu}
-    </Box>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box className={classes.Profile} sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <IconButton size="large" aria-label="show 4 new mails" color="82869E">
+                <Badge badgeContent={4} color="error">
+                  <ShoppingCartIcon
+                    color="#82869E"
+                    onClick={() => {
+                      navigate('/cart');
+                    }}
+                  />
+                </Badge>
+              </IconButton>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="#82869E"
+              >
+                <AccountCircle />
+              </IconButton>
+            </Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="#82869E"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMenu}
+      </Box>
+    </Container>
   );
 };
 
