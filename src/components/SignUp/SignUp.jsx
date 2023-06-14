@@ -13,7 +13,8 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Copyright from '../Copyright/Copyright';
 import request from '../../services/request/request-service';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DatePicker } from '@mui/x-date-pickers';
+import { enqueueSnackbar } from 'notistack';
 
 export default function SignUp() {
   const [province, setProvince] = useState([]);
@@ -21,9 +22,7 @@ export default function SignUp() {
   const [ward, setWard] = useState([]);
 
   const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({
-    ngaySinh: '2001-01-14',
-  });
+  const [credentials, setCredentials] = useState({});
 
   useEffect(() => {
     const loadProvince = async () => {
@@ -82,17 +81,27 @@ export default function SignUp() {
     });
   };
 
+  const changeDate = (view) => {
+    const date = view.$d.toLocaleDateString('en-CA');
+    setCredentials({
+      ...credentials,
+      ['ngaySinh']: date,
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const res = await request.post('/customer/register', credentials);
-      console.log(res);
+      if (res) {
+        enqueueSnackbar('Đăng ký thất bại', { variant: 'success' });
+        setCredentials({});
+        navigate('/signIn');
+      }
     } catch (error) {
-      console.log(error);
+      enqueueSnackbar('Đăng ký thất bại', { variant: 'error' });
     }
   };
-
-  console.log(credentials, 'credentials');
 
   return (
     <div className="bg-container">
@@ -112,7 +121,7 @@ export default function SignUp() {
             <Typography component="h1" variant="h5">
               Đăng ký
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -137,6 +146,7 @@ export default function SignUp() {
                     onChange={handleChange}
                   />
                 </Grid>
+
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -171,7 +181,15 @@ export default function SignUp() {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
+                  <DatePicker
+                    label="Ngày sinh"
+                    onChange={(view) => {
+                      changeDate(view);
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     fullWidth
@@ -255,7 +273,6 @@ export default function SignUp() {
                     fullWidth
                     id="diaChi"
                     label="Địa chỉ"
-                    autoFocus
                     onChange={handleChange}
                   />
                 </Grid>
