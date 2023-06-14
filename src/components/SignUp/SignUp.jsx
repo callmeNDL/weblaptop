@@ -130,6 +130,7 @@ export default function SignUp() {
                     required
                     fullWidth
                     id="hoTenLot"
+                    type="text"
                     label="Họ va tên lót"
                     onChange={handleChange}
                     autoFocus
@@ -141,6 +142,7 @@ export default function SignUp() {
                     fullWidth
                     id="ten"
                     label="Ten"
+                    type="text"
                     name="ten"
                     autoComplete="family-name"
                     onChange={handleChange}
@@ -154,6 +156,7 @@ export default function SignUp() {
                     id="email"
                     label="Email"
                     name="email"
+                    type="email"
                     autoComplete="email"
                     onChange={handleChange}
                   />
@@ -177,6 +180,7 @@ export default function SignUp() {
                     name="username"
                     label="Username"
                     id="username"
+                    type="text"
                     autoComplete="new-username"
                     onChange={handleChange}
                   />
@@ -195,6 +199,7 @@ export default function SignUp() {
                     fullWidth
                     name="soDienThoai"
                     label="SDT"
+                    type="number"
                     id="soDienThoai"
                     autoComplete="new-password"
                     onChange={handleChange}
@@ -272,6 +277,7 @@ export default function SignUp() {
                     required
                     fullWidth
                     id="diaChi"
+                    type="text"
                     label="Địa chỉ"
                     onChange={handleChange}
                   />
