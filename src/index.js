@@ -12,7 +12,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { SnackbarProvider } from 'notistack';
-
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -25,7 +26,9 @@ root.render(
       }}
     >
       <BrowserRouter>
-        <App />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <App />
+        </LocalizationProvider>
       </BrowserRouter>
     </SnackbarProvider>
   </Provider>
