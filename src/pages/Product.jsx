@@ -1,12 +1,14 @@
 import BasicBreadcrumbs from '../components/BreakCrum/BreakCrum';
 import '../assets/scss/Products.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 import ListItem from '../components/ListItem/ListItem';
 import Fillter from '../components/Fillter/Fillter';
+import request from '../services/request/request-service';
 
 const Product = () => {
   const [sort, setSort] = useState({});
+  const [arrSP, setArrSP] = useState([]);
 
   const breakItem = [
     {
@@ -40,6 +42,23 @@ const Product = () => {
       name: 'Giá tăng dần',
     },
   ];
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const res = await request.get('sanphamactive');
+        if (res && res.data) {
+          setArrSP(res.data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadData();
+    return () => {};
+  }, []);
+
+  console.log(arrSP, 'arrSp');
 
   return (
     <div className="bg-container">
@@ -81,7 +100,7 @@ const Product = () => {
                 })}
               </div>
               <div className="list-item">
-                <ListItem />
+                <ListItem data={arrSP} />
               </div>
             </div>
           </div>

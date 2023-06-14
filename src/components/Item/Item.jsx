@@ -23,38 +23,20 @@ const Item = ({ data }) => {
         }}
       >
         <CardActionArea>
-          <CardMedia
-            component="img"
-            height="200"
-            image={data.img}
-            alt="green iguana"
-          />
+          <CardMedia component="img" height="200" image={data.hinhAnhs[0].path} alt="green iguana" />
           <CardContent>
-            <Typography
-              className={classes.brandName}
-              gutterBottom
-              variant="h7"
-              component="div"
-            >
-              {data.brandName}
+            <Typography className={classes.brandName} gutterBottom variant="h7" component="div">
+              tên hãng của máy chưa có
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {data.decsription}
+              {data.tenSanPham}
             </Typography>
-            <Typography
-              className={classes.priceLast}
-              variant="body2"
-              color="text.secondary"
-            >
-              {data.priceLast}
+            <Typography className={classes.priceLast} variant="body2" color="text.secondary">
+              {data.gia}
             </Typography>
             <Box style={{ display: 'flex' }}>
-              <Typography
-                className={classes.priceFrist}
-                variant="body2"
-                color="text.secondary"
-              >
-                {data.priceFrist}
+              <Typography className={classes.priceFrist} variant="body2" color="text.secondary">
+                gia sau khi giam chưa co
               </Typography>
               <Typography
                 style={{ marginLeft: '10px' }}
@@ -62,7 +44,7 @@ const Item = ({ data }) => {
                 variant="body2"
                 color="text.secondary"
               >
-                {data.percentDiscount}
+                % giam gia chua co
               </Typography>
             </Box>
           </CardContent>
