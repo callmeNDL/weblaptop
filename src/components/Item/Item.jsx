@@ -23,7 +23,12 @@ const Item = ({ data }) => {
         }}
       >
         <CardActionArea>
-          <CardMedia component="img" height="200" image={data.hinhAnhs[0].path} alt="green iguana" />
+          <CardMedia
+            component="img"
+            height="200"
+            image={data.hinhAnhs ? data.hinhAnhs[0].path : ''}
+            alt="green iguana"
+          />
           <CardContent>
             <Typography className={classes.brandName} gutterBottom variant="h7" component="div">
               tên hãng của máy chưa có

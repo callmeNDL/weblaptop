@@ -5,6 +5,7 @@ import { Container } from '@mui/material';
 import ListItem from '../components/ListItem/ListItem';
 import Fillter from '../components/Fillter/Fillter';
 import request from '../services/request/request-service';
+import NoContent from '../components/NoContent/NoContent';
 
 const Product = () => {
   const [sort, setSort] = useState({});
@@ -58,8 +59,6 @@ const Product = () => {
     return () => {};
   }, []);
 
-  console.log(arrSP, 'arrSp');
-
   return (
     <div className="bg-container">
       <Container>
@@ -100,7 +99,13 @@ const Product = () => {
                 })}
               </div>
               <div className="list-item">
-                <ListItem data={arrSP} />
+                {arrSP.length > 0 ? (
+                  <ListItem data={arrSP} />
+                ) : (
+                  <div className="no-content">
+                    <NoContent />
+                  </div>
+                )}
               </div>
             </div>
           </div>

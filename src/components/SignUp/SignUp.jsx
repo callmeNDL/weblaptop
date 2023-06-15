@@ -94,9 +94,8 @@ export default function SignUp() {
     try {
       const res = await request.post('/customer/register', credentials);
       if (res) {
-        enqueueSnackbar('Đăng ký thất bại', { variant: 'success' });
+        enqueueSnackbar('Đăng ký thành công', { variant: 'success' });
         setCredentials({});
-        navigate('/signIn');
       }
     } catch (error) {
       enqueueSnackbar('Đăng ký thất bại', { variant: 'error' });
