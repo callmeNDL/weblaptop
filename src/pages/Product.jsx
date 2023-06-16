@@ -47,7 +47,7 @@ const Product = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const res = await request.get('sanphamactive');
+        const res = await request.get('sanphamactive?limit=10&currentpage=0');
         if (res && res.data) {
           setArrSP(res.data.data);
         }
