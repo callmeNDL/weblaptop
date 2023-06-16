@@ -28,7 +28,7 @@ class AuthService {
   }
 
   static setUser(response, decoded, dispatch) {
-    localStorage.setItem('accessToken', response);
+    localStorage.setItem('accessToken', response.data);
     dispatch(
       setCurrentUserAction({
         username: decoded.user.username,

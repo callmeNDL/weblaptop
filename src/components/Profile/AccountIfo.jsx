@@ -1,10 +1,19 @@
-import { FormControl, FormControlLabel, FormLabel, Input, InputLabel, Radio, RadioGroup } from '@mui/material';
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Input,
+  InputLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import './Account.scss';
 import { useState } from 'react';
 import FormDialog from '../FormDialog/FormDialog';
 
-const AccountIfo = () => {
+const AccountIfo = ({ data }) => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleCloseDialog = () => {
@@ -17,19 +26,19 @@ const AccountIfo = () => {
         <div className="title">Thông tin tài khoản</div>
         <FormControl variant="standard">
           <InputLabel htmlFor="component-simple">Họ và tên</InputLabel>
-          <Input id="component-simple" />
+          <Input id="component-simple" value={data.hoTenLot} />
         </FormControl>
         <FormControl variant="standard">
           <InputLabel htmlFor="component-simple">Email</InputLabel>
-          <Input id="component-simple" />
+          <Input id="component-simple" value={data.email} />
         </FormControl>
         <FormControl variant="standard">
           <InputLabel htmlFor="component-simple">Số điên thoại</InputLabel>
-          <Input id="component-simple" />
+          <Input id="component-simple" value={data.soDienThoai} />
         </FormControl>
         <FormControl variant="standard">
           <InputLabel htmlFor="component-simple">Ngày sinh</InputLabel>
-          <Input id="component-simple" />
+          <Input id="component-simple" value={data.ngaySinh} />
         </FormControl>
         <FormControl>
           <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
