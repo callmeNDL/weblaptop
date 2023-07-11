@@ -1,0 +1,39 @@
+.count-container {
+  width: 75px;
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(228, 229, 240);
+  border-radius: 5px;
+  padding: 0 10px;
+
+  .button-count {
+    svg {
+      display: flex;
+    }
+
+    &-disable {
+      svg {
+        color: rgba(16, 16, 16, 0.3);
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+.count-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .delete {
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+    color: rgb(7, 95, 227);
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+  }
+}

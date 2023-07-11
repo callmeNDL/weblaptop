@@ -1,0 +1,154 @@
+.account-container {
+  margin-top: 30px;
+  min-width: 240px;
+  border-radius: 20px;
+  padding: 10px 20px;
+
+  .account-info {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .account-name {
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-size: 13px;
+        font-weight: 400;
+      }
+
+      .name {
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  ul {
+    padding: 0;
+
+    li {
+      cursor: pointer;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      padding: 4px 0px;
+      margin: 8px 0px;
+      background: unset;
+
+      &:hover {
+        font-weight: 700 !important;
+
+        color: rgb(20, 53, 195) !important;
+      }
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+
+    .active {
+      font-weight: 700 !important;
+
+      color: rgb(20, 53, 195) !important;
+    }
+  }
+}
+
+.account-info-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  width: 100%;
+
+  .account-infor {
+    width: 100%;
+    padding: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+
+    .MuiFormControl-root {
+      padding: 15px 0;
+    }
+
+    button {
+      max-width: 100px;
+      border-style: none;
+      border-width: 1px;
+      border-color: unset;
+      opacity: 1;
+      height: 2.5rem;
+      padding: 0rem 1.25rem;
+      border-radius: 0.25rem;
+      background-color: rgb(63, 22, 229);
+      position: relative;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      outline: none;
+      min-width: 2.5rem;
+      color: rgb(228, 229, 240);
+      cursor: not-allowed;
+      transition-duration: 80ms;
+      transition-property: background-color;
+    }
+  }
+
+  .account-location {
+    max-width: 333px;
+    height: fit-content;
+    border-style: none;
+    border-width: 1px;
+    border-color: unset;
+    opacity: 1;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    padding: 1rem;
+
+    .add-location {
+      padding: 20px 0 10px 0;
+      border-style: none;
+      border-width: 1px;
+      border-color: unset;
+      opacity: 1;
+      color: rgb(130, 134, 158);
+      font-weight: 400;
+      text-decoration: unset;
+      font-size: 13px;
+      line-height: 20px;
+      overflow: hidden;
+      transition: color 0.3s ease 0s;
+    }
+
+    .button-add-location {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      opacity: 1;
+      color: rgb(25, 144, 255);
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 20px;
+      overflow: hidden;
+      transition: color 0.3s ease 0s;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    max-width: 200px;
+  }
+}

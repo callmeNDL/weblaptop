@@ -1,0 +1,25 @@
+.listItemContainer {
+  margin-top: 30px;
+  padding: 0 10px;
+
+  .titleItem {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .showMore {
+      cursor: pointer;
+      color: rgb(130, 134, 158);
+    }
+  }
+  .listItemBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .Item {
+      width: 24%;
+      margin-bottom: 20px;
+    }
+  }
+}

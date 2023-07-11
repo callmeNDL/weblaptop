@@ -1,0 +1,101 @@
+.delivery-info {
+  background-color: white;
+  padding: 10px;
+  width: 100%;
+
+  .delivery-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .address {
+      padding: 10px;
+      border: 1px solid lightgrey;
+      margin: '0 10px';
+      width: 48%;
+
+      &-add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      &--active {
+        border: 1px solid blue;
+        position: relative;
+
+        .active-icon {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: blue;
+          width: 20px;
+          height: 20px;
+          color: white;
+          text-align: center;
+          font-weight: 700;
+        }
+      }
+
+      .name {
+        margin-bottom: 2px;
+        font-weight: 500;
+      }
+    }
+
+    .note {
+      width: 100%;
+    }
+  }
+}
+
+.banking {
+  .des {
+    font-size: 12px;
+    font-weight: 300;
+    margin-top: -10px;
+  }
+
+  .banking-box {
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+
+    .item {
+      padding: 10px;
+      border: 1px solid lightgrey;
+      margin: '0 10px';
+      width: 46%;
+
+      &--active {
+        border: 1px solid blue;
+        position: relative;
+
+        .active-icon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 20px;
+          height: 20px;
+          background-color: blue;
+          color: white;
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .banking-title {
+        font-weight: 700;
+      }
+
+      .recomend {
+        background-color: blue;
+        color: white;
+        padding: 3px;
+        border-radius: 5px;
+      }
+    }
+  }
+}

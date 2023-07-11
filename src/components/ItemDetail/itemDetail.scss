@@ -1,0 +1,127 @@
+.itemDetail-Box {
+  height: 100%;
+  padding: 50px 0 30px 0;
+  display: flex;
+  gap: 20px;
+
+  .item-left {
+    display: flex;
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    height: 100%;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  }
+
+  .itemInformation {
+    background-color: white;
+
+    .item-name {
+      font-size: 24px;
+      line-height: 1.33;
+    }
+
+    .item-price {
+      margin: 0px;
+      padding: 0px;
+      border-style: none;
+      border-width: 1px;
+      border-color: unset;
+      opacity: 1;
+      color: rgb(20, 53, 195);
+      font-weight: 700;
+      text-decoration: unset;
+      font-size: 20px;
+      line-height: 28px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: unset;
+      max-width: unset;
+      min-width: unset;
+      transition: color 0.3s ease 0s;
+    }
+
+    .item-information {
+      display: flex;
+
+      .line {
+        margin: 0 8px;
+      }
+    }
+
+    .button-box {
+      display: flex;
+      gap: 20px;
+    }
+
+    .discount-box {
+      .discount-title {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.25rem;
+        color: #333333;
+      }
+
+      li {
+      }
+    }
+  }
+  .imageContainer {
+    max-width: 300px;
+
+    .img-preview {
+      display: flex;
+      justify-content: center;
+      transition: height 2s;
+      img {
+        width: 90%;
+        object-fit: cover;
+      }
+    }
+
+    .list-imgProduct {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5;
+      padding: 0 10px;
+
+      .img-box {
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+        }
+
+        &--active {
+          border-radius: 6px;
+          border: 1px solid rgb(20, 53, 195);
+          position: relative;
+          cursor: pointer;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .product-decs {
+      font-size: 14px;
+      padding: 10px;
+      line-height: 24px;
+    }
+  }
+  .company-info {
+    background-color: white;
+    border-radius: 10px;
+    padding: 14px;
+    height: fit-content;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  }
+  .line-bottom {
+    border-bottom: 1px #e4e5f0 dashed;
+    opacity: 1;
+    display: flex;
+    margin: 20px 0;
+  }
+}
