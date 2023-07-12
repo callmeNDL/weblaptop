@@ -6,13 +6,10 @@ const INITIAL_STATE = {
 const cardReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CardActionTypes.ADD_CARD:
-      let newcart = state.cartAr;
       const productInCart = state.cartAr?.find(
         (p) => p.id === action.payload.id
       );
-      console.log(productInCart, 'productInCart');
       if (!productInCart) {
-        console.log("AAAA");
         return {
           ...state,
           cartAr: [...state.cartAr, {
@@ -21,14 +18,15 @@ const cardReducer = (state = INITIAL_STATE, action) => {
           }],
         };
       } else {
-        let newcart = state.cartAr;
+        let newcart = [...state.cartAr];
         const objIndex = newcart.findIndex(
           (obj) => obj.id == action.payload.id
         );
+        console.log(objIndex, 'objIndex');
         if (newcart[objIndex].quantity === undefined) {
           newcart[objIndex].quantity = 2;
         } else {
-          newcart[objIndex].quantity = newcart[objIndex].quantity + 1;
+          newcart[objIndex].quantity = newcart[objIndex]?.quantity + 1;
         }
 
         return {

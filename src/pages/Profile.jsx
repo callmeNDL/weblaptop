@@ -11,17 +11,39 @@ import Location from '../components/Profile/Location';
 import Notification from '../components/Profile/Notification';
 import request, { getAuthToken } from '../services/request/request-service';
 import { useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router';
+import { async } from 'q';
 
 const Profile = () => {
   const [activeProfile, setActiveProfile] = useState('Thông tin cá nhân');
   const [userData, setUserData] = useState({});
 
   const userState = useSelector((state) => state.user);
+  const pathPattern = useLocation();
 
   const account = {
     img: 'https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2023/02/Hinh-anh-avatar-Facebook.jpg?resize=560%2C560&ssl=1',
     name: 'NDL',
   };
+
+  const getHoaDonKhachHang = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      try {
+        const res = await request.get(`hoadonbykhachhang`, {
+          headers: {
+            Authorization: `Token ${accessToken}`,
+          },
+        });
+
+        console.log(res, "Aa");
+
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
+  }
 
   useEffect(() => {
     const getUser = async () => {
@@ -40,7 +62,19 @@ const Profile = () => {
     getUser();
   }, []);
 
-  console.log(userData);
+  useEffect(() => {
+    if (pathPattern.pathname) {
+      if (pathPattern.pathname === '/profile/order') {
+        setActiveProfile('Quản lý đơn hàng')
+      }
+    }
+  }, [pathPattern?.pathname])
+
+  useEffect(() => {
+    if (activeProfile === 'Quản lý đơn hàng') {
+      getHoaDonKhachHang()
+    }
+  }, [activeProfile])
 
   return (
     <div className="profile-container bg-container">

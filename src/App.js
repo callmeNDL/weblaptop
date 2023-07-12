@@ -11,6 +11,8 @@ import Cart from './pages/Cart';
 import Profile from './pages/Profile';
 import DetailPage from './pages/DetailPage';
 import CheckOut from './pages/CheckOut';
+import OrderResult from './pages/OrderResult';
+import Magazine from './pages/Magazine';
 
 function App() {
   return (
@@ -22,9 +24,12 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/checkout" element={<CheckOut />} />
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/profile/order" element={<Profile />} />
         <Route exact path="/signIn" element={<SignInPage />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/promo" element={<Promo />} />
+        <Route exact path="/magazine" element={<Magazine />} />
+        <Route exact path="/order-result/:codeId" element={<OrderResult />} />
       </Routes>
     </AppLayout>
   );

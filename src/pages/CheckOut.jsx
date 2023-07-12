@@ -1,19 +1,6 @@
 import BasicBreadcrumbs from '../components/BreakCrum/BreakCrum';
 import { makeStyles } from '@mui/styles';
-import {
-  Box,
-  Container,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Grid,
-  Tab,
-  Tabs,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Tab, Tabs, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import '../assets/scss/Cart.scss';
 import { useEffect, useState } from 'react';
@@ -21,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../assets/scss/Checkout.scss';
 import AddIcon from '@mui/icons-material/Add';
 import request, { getAuthToken } from '../services/request/request-service';
+import { enqueueSnackbar } from 'notistack';
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -57,7 +45,7 @@ const CheckOut = () => {
   const navigate = useNavigate();
   const [priceTotal, setpriceTotal] = useState('');
 
-  const itemCard = useSelector((state) => state.itemCheckout.arrItem);
+  const itemCard = useSelector(state => state.itemCheckout.arrItem)
   const userState = useSelector((state) => state.user);
   const [userData, setUserData] = useState({});
 
@@ -86,22 +74,78 @@ const CheckOut = () => {
     }
   };
 
+  console.log([userData, itemCard], "Daaa");
+
+  const handleCheckout = async () => {
+    if (userData && itemCard.length > 0) {
+      const dataChiTiet = itemCard.map((item) => {
+        return {
+          soLuong: item?.quantity,
+          gia: item?.gia,
+          sanPham: {
+            id: item?.id
+          }
+        }
+      })
+
+      let priceCheckout = 0
+      itemCard?.forEach((item) =>
+        priceCheckout += item.gia * item.quantity
+      )
+
+      const fromData = {
+        tenKhachHang: userData?.ten,
+        diaChi: userData.diaChi,
+        soDienThoai: userData.soDienThoai,
+        ghiChu: "123",
+        trangThaiThanhToan: "1",
+        soThangTraGop: 0,
+        soTienTraTruoc: priceCheckout,
+        soTienTraGop: 0,
+        chiTietHoaDons: dataChiTiet
+      }
+      const accessToken = localStorage.getItem('accessToken');
+      if (accessToken) {
+        try {
+          const res = await request.post('hoadon', fromData, {
+            headers: {
+              Authorization: `Token ${accessToken}`,
+            },
+          });
+          console.log(res, "Check res");
+          if (res?.data?.status === 'OK') {
+            enqueueSnackbar(res?.data?.message, { variant: 'success' });
+            navigate('/profile/order')
+          }
+          else {
+            enqueueSnackbar(res?.data?.message, { variant: 'error' });
+
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      console.log(accessToken, "AAA");
+    }
+  }
+
+
   useEffect(() => {
-    let price = 0;
+    let price = 0
 
     if (itemCard) {
-      itemCard?.forEach((item) => (price += item.gia * item.quantity));
-      setpriceTotal(price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) ?? '');
+      itemCard?.forEach((item) =>
+        price += item.gia * item.quantity
+      )
+      setpriceTotal(price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) ?? '')
     }
-  }, [itemCard]);
+  });
 
   useEffect(() => {
     if (userState && userState.userId) {
-      getUser(userState.userId);
+      getUser(userState.userId)
     }
-  }, [userState]);
-
-  console.log(userData, 'Check data');
+  }, [userState])
 
   return (
     <div className="bg-container">
@@ -112,12 +156,12 @@ const CheckOut = () => {
           {itemCard && itemCard?.length > 0 ? (
             <div className="list-cart-container">
               <div className="list-cart-content" style={{ justifyContent: 'space-between' }}>
-                <div style={{ width: '100%' }}>
-                  <div className="delivery-info">
+                <div style={{ width: '100%' }} >
+                  <div className='delivery-info'>
                     <h1>Thông tin nhận hàng</h1>
-                    <Grid container gap={'10px 0'} className="delivery-box">
+                    <Grid container gap={'10px 0'} className='delivery-box'>
                       <Grid item className="address address--active">
-                        <div className="name">GH:{userData?.hoTenLot + userData?.ten}</div>
+                        <div className='name'>GH:{userData?.hoTenLot + userData?.ten}</div>
                         <div>{userData?.soDienThoai}</div>
                         <div>{userData?.diaChi}</div>
                         <span className="active-icon">✓</span>
@@ -228,15 +272,7 @@ const CheckOut = () => {
                       </div>
                     </div>
                     <div className="title-vat">(Đã bao gồm thuế)</div>
-                    <button
-                      className="button-primary"
-                      onClick={() => {
-                        navigate('/checkout');
-                      }}
-                    >
-                      THANH TOÁN
-                      <br /> {userState ? '' : 'Bạn cần đăng nhập để thanh toán'}
-                    </button>
+                    <button className="button-primary" onClick={handleCheckout}>THANH TOÁN<br /> {userState ? '' : 'Bạn cần đăng nhập để thanh toán'}</button>
                   </div>
                 </div>
               </div>

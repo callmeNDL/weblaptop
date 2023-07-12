@@ -15,6 +15,12 @@ const Header = () => {
   function handleClickProduct() {
     navigate('/product');
   }
+  function handleClickPromo() {
+    navigate('/promo');
+  }
+  function handleClickMagazine() {
+    navigate('/magazine');
+  }
   useEffect(() => {
     const updateScrollDirection = () => {
       const scrollY = window.pageYOffset;
@@ -52,7 +58,7 @@ const Header = () => {
               <a href="" onClick={handleClickHome}>
                 <h5>Trang chủ</h5>
               </a>
-              <a href="#placeholder">
+              <a href="" onClick={handleClickPromo}>
                 <h5>Khuyến mãi</h5>
               </a>
               <a href="" onClick={handleClickProduct}>
@@ -61,7 +67,7 @@ const Header = () => {
               <a href="#placeholder">
                 <h5>CSKH</h5>
               </a>
-              <a href="#placeholder">
+              <a href="" onClick={handleClickMagazine}>
                 <h5>Tin công nghệ</h5>
               </a>
               <a href="#placeholder">

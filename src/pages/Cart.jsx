@@ -146,11 +146,11 @@ const Cart = () => {
 
   useEffect(() => {
     if (Array.isArray(itemCard) && itemCard?.length > 0) {
-      const arr = itemCard;
-      let indexArr = -1;
+      const arr = itemCard
+      let indexArr = -1
       arr.forEach((item, index) => {
         if (Array.isArray(item)) {
-          indexArr = index;
+          indexArr = index
         }
       });
       if (indexArr > -1) {
@@ -158,9 +158,9 @@ const Cart = () => {
         arr.splice(indexArr, 1); // 2nd parameter means remove one item only
       }
 
-      setListCart(arr);
+      setListCart(arr)
     }
-  }, [itemCard]);
+  }, [itemCard])
 
   const handleSelectItem = (item) => {
     const arrResult = item?.map((item) => listCart.find((el) => el.id === item));
@@ -178,11 +178,26 @@ const Cart = () => {
     }
   }, [listCartSelected]);
 
-  const handleCheckOut = () => {
-    dispatch(setItemCheckout(listCartSelected));
+  useEffect(() => {
+    let price = 0
 
-    navigate('/checkout');
-  };
+    if (listCartSelected) {
+      listCartSelected?.forEach((item) =>
+        price += item.gia * item.quantity
+      )
+      setpriceTotal(price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }) ?? '')
+    }
+  }, [listCartSelected])
+
+  const handleCheckOut = () => {
+    if (!user?.userId) {
+      navigate('/signIn');
+    } else {
+      dispatch(setItemCheckout(listCartSelected))
+      navigate('/checkout');
+    }
+
+  }
 
   return (
     <div className="bg-container">
@@ -225,10 +240,7 @@ const Cart = () => {
                     <div className="price price-into">{priceTotal}</div>
                   </div>
                   <div className="title-vat">(Đã bao gồm thuế)</div>
-                  <button className="button-primary" onClick={handleCheckOut}>
-                    THANH TOÁN
-                    <br /> {user ? '' : 'Bạn cần đăng nhập để thanh toán'}
-                  </button>
+                  <button className="button-primary" onClick={handleCheckOut}>THANH TOÁN<br /> {user?.userId ? '' : 'Bạn cần đăng nhập để thanh toán'}</button>
                 </div>
               </div>
             </div>
