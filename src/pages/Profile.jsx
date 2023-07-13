@@ -17,6 +17,7 @@ import { async } from 'q';
 const Profile = () => {
   const [activeProfile, setActiveProfile] = useState('Thông tin cá nhân');
   const [userData, setUserData] = useState({});
+  const [dataHoaDon, setDataHoaDon] = useState([]);
 
   const userState = useSelector((state) => state.user);
   const pathPattern = useLocation();
@@ -36,14 +37,16 @@ const Profile = () => {
           },
         });
 
-        console.log(res, "Aa");
-
+        if (res?.data?.status === 'OK') {
+          setDataHoaDon(res?.data?.data);
+        }
       } catch (error) {
         console.log(error);
       }
-
     }
-  }
+  };
+
+  console.log(dataHoaDon, 'dataHoaDon');
 
   useEffect(() => {
     const getUser = async () => {
@@ -65,16 +68,16 @@ const Profile = () => {
   useEffect(() => {
     if (pathPattern.pathname) {
       if (pathPattern.pathname === '/profile/order') {
-        setActiveProfile('Quản lý đơn hàng')
+        setActiveProfile('Quản lý đơn hàng');
       }
     }
-  }, [pathPattern?.pathname])
+  }, [pathPattern?.pathname]);
 
   useEffect(() => {
     if (activeProfile === 'Quản lý đơn hàng') {
-      getHoaDonKhachHang()
+      getHoaDonKhachHang();
     }
-  }, [activeProfile])
+  }, [activeProfile]);
 
   return (
     <div className="profile-container bg-container">
@@ -127,7 +130,7 @@ const Profile = () => {
           </ul>
         </div>
         {activeProfile === 'Thông tin cá nhân' && <AccountIfo data={userData} />}
-        {activeProfile === 'Quản lý đơn hàng' && <Commande />}
+        {activeProfile === 'Quản lý đơn hàng' && <Commande data={dataHoaDon} />}
         {activeProfile === 'Số địa chỉ' && <Location />}
         {activeProfile === 'Thông báo' && <Notification />}
       </Container>

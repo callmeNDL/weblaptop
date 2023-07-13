@@ -7,7 +7,7 @@ import { Opacity } from '@mui/icons-material';
 const Magazine = () => {
   return (
     <div className="container">
-      <div className="title">
+      <div className="title-M">
         <h1>Tin công nghệ</h1>
       </div>
       <div className="content">

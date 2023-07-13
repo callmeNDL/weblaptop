@@ -9,10 +9,10 @@ const TopLapTop = () => {
   const listItem = [
     {
       id: 1,
-      brandName: 'MSI',
+      brandName: 'ASUS',
       hinhAnhs: [
         {
-          path: 'https://lh3.googleusercontent.com/YU6oxG2QtC_1Bc9pv4ykzK_ldevPNz6YGKrNJ4KshpcG-eNURyzSqlTpzu1ZZ-Dl-8-0Dm_bq0kopcD5BMJU4X8x3MUnDt4C=w230-rw',
+          path: 'https://lh3.googleusercontent.com/7rvuPBx-BS-q4QXqH1xZF7dLIjpi0__Fw_XV1_qw4GaXepR63JBRKOEOJMwSTL2sui58w_OCuzSpdiiI7BArT27mWduE6Asu=w500-rw',
         },
       ],
       decsription: 'Laptop HP Victus 16-e1107AX (7C140PA) (Ryzen 5 6600H/RAM 8GB/512GB SSD/ Windows 11)',
@@ -22,10 +22,10 @@ const TopLapTop = () => {
     },
     {
       id: 2,
-      brandName: 'MSI',
+      brandName: 'HP',
       hinhAnhs: [
         {
-          path: 'https://lh3.googleusercontent.com/3JFqgn1gigjmEFwG5nH6sICKnZRPHHAnMWoVRKyi2DQzb2zhihFENtO3pxAnx39EpkcPzRlGrEtB9pnKAIsMLW4Ax22OSzqtDQ=w230-rw',
+          path: 'https://lh3.googleusercontent.com/PjhHXXreUCNNLITAJ3gfR2heYwi7JRjbjIwC4Rh-zDi8cUqQT0CoVQVQ0WzoOuKG487h__xpEZQ_zQDXfWvRWWrKDYFSmc0wZA=w230-rw',
         },
       ],
       decsription: 'Laptop HP Victus 16-e1107AX (7C140PA) (Ryzen 5 6600H/RAM 8GB/512GB SSD/ Windows 11)',
@@ -35,10 +35,10 @@ const TopLapTop = () => {
     },
     {
       id: 3,
-      brandName: 'MSI',
+      brandName: 'HP',
       hinhAnhs: [
         {
-          path: 'https://lh3.googleusercontent.com/TldFf1XX0fNtluXF7vf6pvFyLR5foiopDTePmN-wZkFHDkGSi41GuFPCYtQZ9BMb6zPL_8644oW34ws3vTQ-WUfD-tMOSRcE=w230-rw',
+          path: 'https://lh3.googleusercontent.com/0Q0lMqKR7EDq6as_tAt0muqPXPxUMdIhQ91c9QUCHRZiE4JTJRISEGfAxxz7DucQpiokqAZOjTpHn5pm5KO-zUKhnWDwppFL=w230-rw',
         },
       ],
       decsription: 'Laptop HP Victus 16-e1107AX (7C140PA) (Ryzen 5 6600H/RAM 8GB/512GB SSD/ Windows 11)',
@@ -48,10 +48,10 @@ const TopLapTop = () => {
     },
     {
       id: 4,
-      brandName: 'MSI',
+      brandName: 'ACER',
       hinhAnhs: [
         {
-          path: 'https://lh3.googleusercontent.com/k9H0KS7063wUceOem_5T-soiCA4mHBOebq-_9IylO5ZIL_DedMr4RaRLh7vn6YtS7tDV_KWOhXbaaaVkrx4QNgmdN2GKd1I=w230-rw',
+          path: 'https://lh3.googleusercontent.com/1S6Ltn5pJWSMWh0U6V4w80Di1Lq8AVQhuDOzVHbQPmxwcztwofrF_3gyuy7Pk8AJ73MVFCYDgm4r1orx6eh88iwVj9nDyXk=w230-rw',
         },
       ],
       decsription: 'Laptop HP Victus 16-e1107AX (7C140PA) (Ryzen 5 6600H/RAM 8GB/512GB SSD/ Windows 11)',
