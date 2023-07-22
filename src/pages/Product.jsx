@@ -6,10 +6,33 @@ import ListItem from '../components/ListItem/ListItem';
 import Fillter from '../components/Fillter/Fillter';
 import request from '../services/request/request-service';
 import NoContent from '../components/NoContent/NoContent';
+import { useSearchParams } from 'react-router-dom';
 
 const Product = () => {
   const [sort, setSort] = useState({});
   const [arrSP, setArrSP] = useState([]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const nhaSanXuat = searchParams.get('nhaSanXuat')
+
+
+  const loadDataNSX = async (nhaSanXuat) => {
+    try {
+      const res = await request.get(`sanpham/nhasanxuat/${nhaSanXuat}`);
+      if (res && res.data) {
+        setArrSP(res.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (nhaSanXuat) {
+      loadDataNSX(nhaSanXuat)
+    }
+  }, [nhaSanXuat])
 
   const breakItem = [
     {
@@ -56,7 +79,7 @@ const Product = () => {
       }
     };
     loadData();
-    return () => {};
+    return () => { };
   }, []);
 
   return (
@@ -65,10 +88,10 @@ const Product = () => {
         <div className="product-container bg-container">
           <BasicBreadcrumbs data={breakItem} />
           <div className="product-box">
-            <Fillter />
+            <Fillter setArrSP={setArrSP} />
             <div className="products-box">
               <div className="sort-box">
-                <div className="title">Laptop - Máy tính xách tay</div>
+                <div className="title">Laptop - {nhaSanXuat ? nhaSanXuat : 'Máy tính xách tay'}</div>
                 {/* {sortItem.map((item) => {
                   if (item.id === sort.id) {
                     return (

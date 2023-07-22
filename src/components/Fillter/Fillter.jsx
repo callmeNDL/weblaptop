@@ -1,11 +1,12 @@
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import useStyles from './fillter.stytles';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
-const Fillter = () => {
+import request from '../../services/request/request-service';
+const Fillter = ({ setArrSP }) => {
   const [value, setValue] = useState([0, 30000000]);
   const [showMoreBrand, setShowMoreBrand] = useState(false);
   const [showMoreScreen, setShowMoreScreen] = useState(false);
@@ -38,13 +39,30 @@ const Fillter = () => {
     while (pattern.test(x)) x = x.replace(pattern, '$1,$2');
     return x;
   }
+
+
+  const loadDataNSX = async (nhaSanXuat) => {
+    try {
+      const res = await request.get(`sanphamfilter?nhasanxuat=&loaisanpham=&tugia=${value[0]}&dengia=${value[1]}`);
+      if (res && res.data) {
+        setArrSP(res.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadDataNSX()
+  }, [value])
+
   return (
-    <div className="filter-box">
+    <div className="filter-box" style={{ minWidth: '300px' }}>
       <div className="item">
         <div className="subttile">Khoảng giá</div>
         <div className="price">
           <span className="price-item">{numberWithCommas(value[0])}đ</span>
-          <span className="price-item">{numberWithCommas(value[1])}đ</span>
+          <span className="price-item" style={{ minWidth: '100px' }}>{numberWithCommas(value[1])}đ</span>
         </div>
         <Box sx={{ width: 160, margin: 'auto' }}>
           <Slider

@@ -1,5 +1,6 @@
 import Slider from 'react-slick';
 import './topBrand.scss';
+import { useNavigate } from 'react-router-dom';
 
 const TopBrand = () => {
   var settings = {
@@ -9,6 +10,12 @@ const TopBrand = () => {
     autoplay: true,
     autoplaySpeed: 2000,
   };
+
+  const navigate = useNavigate()
+
+  const handleGetProduct = (name) => {
+    navigate(`/product?nhaSanXuat=${name}`);
+  }
 
   const listTopBrand = [
     {
@@ -39,26 +46,10 @@ const TopBrand = () => {
       img: 'https://lh3.googleusercontent.com/kQm3q7CgT3NoKt6qO66ZQVc_WSt1XmwO0yZmAkIpSieh-KlxU-kslqhEPaQxR2LUeZCYh2fc5o-LYJ_LECN8LwiUzlrV3G7reQ=w308-rw',
       name: 'LENOVO',
     },
-    // {
-    //   img: 'https://lh3.googleusercontent.com/IqFtu_Hq7dQkOuTjKwVTjKV5Z1qK3FsuX3yX6Ab30i_yXZ2B1dFs8uQwQ9zgTt3UZts3RnuYx-ujvQW0i5Ox2UDhrqxeehI=w400-rw',
-    //   name: 'ASUS',
-    // },
-    // {
-    //   img: 'https://lh3.googleusercontent.com/IqFtu_Hq7dQkOuTjKwVTjKV5Z1qK3FsuX3yX6Ab30i_yXZ2B1dFs8uQwQ9zgTt3UZts3RnuYx-ujvQW0i5Ox2UDhrqxeehI=w400-rw',
-    //   name: 'ASUS',
-    // },
-    // {
-    //   img: 'https://lh3.googleusercontent.com/IqFtu_Hq7dQkOuTjKwVTjKV5Z1qK3FsuX3yX6Ab30i_yXZ2B1dFs8uQwQ9zgTt3UZts3RnuYx-ujvQW0i5Ox2UDhrqxeehI=w400-rw',
-    //   name: 'ASUS',
-    // },
-    // {
-    //   img: 'https://lh3.googleusercontent.com/IqFtu_Hq7dQkOuTjKwVTjKV5Z1qK3FsuX3yX6Ab30i_yXZ2B1dFs8uQwQ9zgTt3UZts3RnuYx-ujvQW0i5Ox2UDhrqxeehI=w400-rw',
-    //   name: 'ASUS',
-    // },
-    // {
-    //   img: 'https://lh3.googleusercontent.com/IqFtu_Hq7dQkOuTjKwVTjKV5Z1qK3FsuX3yX6Ab30i_yXZ2B1dFs8uQwQ9zgTt3UZts3RnuYx-ujvQW0i5Ox2UDhrqxeehI=w400-rw',
-    //   name: 'ASUS',
-    // },
+    {
+      img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/MacBook_logo.svg/2560px-MacBook_logo.svg.png',
+      name: 'APPLE',
+    },
   ];
 
   return (
@@ -66,9 +57,9 @@ const TopBrand = () => {
       <div className="topBrand-title">Thương hiệu nổi bật</div>
       <Slider {...settings}>
         {listTopBrand.map((item) => (
-          <div className="topBrand-box" key={item.id}>
+          <div className="topBrand-box" key={item.id} onClick={() => { handleGetProduct(item.name) }}>
             <div className="img-box">
-              <img src={item.img} alt={`img- ${item.name}`} />
+              <img src={item.img} alt={`img- ${item.name}`} style={{ objectFit: 'contain' }} />
             </div>
             <h3 className="brand-name">{item.name}</h3>
           </div>

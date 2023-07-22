@@ -37,6 +37,7 @@ const Home = () => {
     loadData();
     return () => { };
   }, []);
+
   return (
     <>
       <SliderHome />
