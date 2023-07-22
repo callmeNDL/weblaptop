@@ -1,20 +1,21 @@
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useEffect, useState } from 'react';
-import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
+import { Checkbox, FormControlLabel, FormGroup, Radio, RadioGroup } from '@mui/material';
 import useStyles from './fillter.stytles';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import request from '../../services/request/request-service';
 const Fillter = ({ setArrSP }) => {
   const [value, setValue] = useState([0, 30000000]);
+  const [valueNXS, setValueNXS] = useState('');
+
   const [showMoreBrand, setShowMoreBrand] = useState(false);
   const [showMoreScreen, setShowMoreScreen] = useState(false);
 
   const classes = useStyles();
   const brandItem = [
     'ACER',
-    'APPLE',
     'APPLE',
     'ASUS',
     'Avita',
@@ -41,9 +42,9 @@ const Fillter = ({ setArrSP }) => {
   }
 
 
-  const loadDataNSX = async (nhaSanXuat) => {
+  const loadDataFlter = async (nhaSanXuat) => {
     try {
-      const res = await request.get(`sanphamfilter?nhasanxuat=&loaisanpham=&tugia=${value[0]}&dengia=${value[1]}`);
+      const res = await request.get(`sanphamfilter?nhasanxuat=${valueNXS}&loaisanpham=&tugia=${value[0]}&dengia=${value[1]}`);
       if (res && res.data) {
         setArrSP(res.data.data);
       }
@@ -53,8 +54,10 @@ const Fillter = ({ setArrSP }) => {
   };
 
   useEffect(() => {
-    loadDataNSX()
-  }, [value])
+    loadDataFlter()
+  }, [value, valueNXS])
+
+  console.log(valueNXS, 'vvalueNXS');
 
   return (
     <div className="filter-box" style={{ minWidth: '300px' }}>
@@ -79,11 +82,11 @@ const Fillter = ({ setArrSP }) => {
       </div>
       <div className="item">
         <div className="subttile">Thương hiệu</div>
-        <FormGroup className={`${classes.FormGroup} ${!showMoreBrand && classes.hidden}`}>
+        <RadioGroup className={`${classes.FormGroup} ${!showMoreBrand && classes.hidden}`} value={valueNXS}>
           {brandItem.map((item) => (
-            <FormControlLabel className={classes.label} control={<Checkbox />} label={item} />
+            <FormControlLabel className={classes.label} value={item} onChange={(e, value) => setValueNXS(e.target.value)} control={<Radio />} label={item} />
           ))}
-        </FormGroup>
+        </RadioGroup>
         <span
           className={`show-more-filter show-more-filter${showMoreBrand ? '-up' : '-down'}`}
           onClick={() => {
