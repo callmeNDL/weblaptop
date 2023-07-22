@@ -4,30 +4,46 @@ import '../assets/scss/Home.scss';
 import ListItem from '../components/ListItem/ListItem';
 import TopBrand from '../components/TopBrand/TopBrand';
 import { Container } from '@mui/material';
+import { useEffect, useState } from 'react';
+import request, { getAuthToken } from '../services/request/request-service';
 
 const Home = () => {
-  const listItem = [
-    {
-      id: 1,
-      brandName: 'MSI',
-      hinhAnhs: [
-        {
-          path: 'https://lh3.googleusercontent.com/YU6oxG2QtC_1Bc9pv4ykzK_ldevPNz6YGKrNJ4KshpcG-eNURyzSqlTpzu1ZZ-Dl-8-0Dm_bq0kopcD5BMJU4X8x3MUnDt4C=w230-rw',
-        },
-      ],
-      decsription: 'Laptop HP Victus 16-e1107AX (7C140PA) (Ryzen 5 6600H/RAM 8GB/512GB SSD/ Windows 11)',
-      priceLast: '23.490.000 ₫',
-      priceFrist: '25.490.000 ₫',
-      percentDiscount: '-7.85%',
-    },
-  ];
+  const [data, setData] = useState([])
+  const [dataTop, setDataTop] = useState([])
+
+  const loadData = async (limit = 12) => {
+    try {
+      const res = await request.get(`sanphamactive?limit=${limit}&currentpage=0`);
+      if (res && res.data) {
+        setData(res.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const loadDataTop = async (limit = 4) => {
+    try {
+      const res = await request.get(`sanphamactive?limit=${limit}&currentpage=0`);
+      if (res && res.data) {
+        setDataTop(res.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadDataTop()
+    loadData();
+    return () => { };
+  }, []);
   return (
     <>
       <SliderHome />
       <Container>
-        <TopLapTop />
+        <TopLapTop data={dataTop} />
         <TopBrand />
-        <ListItem title={true} data={listItem} />
+        <ListItem title={true} data={data} />
       </Container>
     </>
   );

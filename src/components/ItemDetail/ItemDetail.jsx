@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './itemDetail.scss';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import CachedIcon from '@mui/icons-material/Cached';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { get } from '../../services/request/request-service';
 import { Grid, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCardItem } from '../../redux/card/card.actions';
 import { enqueueSnackbar } from 'notistack';
+import { setItemCheckout } from '../../redux/checkout/checkout.actions';
+
 const ItemDetail = () => {
   const [imageActive, setImageActve] = useState({});
   const [data, setData] = useState({});
@@ -37,6 +39,19 @@ const ItemDetail = () => {
       img: 'https://lh3.googleusercontent.com/BkT11UBsn3um0N0zVqAM3GUBdrzBlMWuyGvpy9BdUJ6WOgyn3v88fT-DCcoY_iKP2r2mn1ZKMsURepKohXAzqZ8drhu-R5LV=w1000-rw',
     },
   ];
+
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const handleCheckOut = () => {
+    if (!user?.userId) {
+      navigate('/signIn');
+    } else {
+      console.log(data, "Cehck data");
+      dispatch(setItemCheckout([{ ...data, quantity: 1 }]))
+      navigate('/checkout');
+    }
+  }
   const item = {
     id: 1,
     brandName: 'MSI',
@@ -131,7 +146,7 @@ const ItemDetail = () => {
           </div> */}
           <div className="line-bottom"></div>
           <div className="button-box">
-            <button className="button-primary">Mua Ngay</button>
+            <button className="button-primary" onClick={handleCheckOut}>Mua Ngay</button>
             <button className="button-second" onClick={handeAddCard}>
               Thêm vào giỏ hàng
             </button>
