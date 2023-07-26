@@ -26,9 +26,7 @@ const Item = ({ data }) => {
           <CardMedia
             component="img"
             height="200"
-            image={
-              'https://lh3.googleusercontent.com/7rvuPBx-BS-q4QXqH1xZF7dLIjpi0__Fw_XV1_qw4GaXepR63JBRKOEOJMwSTL2sui58w_OCuzSpdiiI7BArT27mWduE6Asu=w230-rw'
-            }
+            image={data?.hinhAnhs[0]?.path}
             alt="green iguana"
           />
           <CardContent>
