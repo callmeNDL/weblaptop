@@ -16,6 +16,7 @@ const ItemDetail = () => {
   const [data, setData] = useState({});
   let { productId } = useParams();
   const dispatch = useDispatch();
+  const [img, setImg] = useState([]);
 
   const imgDetail = [
     {
@@ -52,17 +53,6 @@ const ItemDetail = () => {
       navigate('/checkout');
     }
   }
-  const item = {
-    id: 1,
-    brandName: 'MSI',
-    img: 'https://lh3.googleusercontent.com/YU6oxG2QtC_1Bc9pv4ykzK_ldevPNz6YGKrNJ4KshpcG-eNURyzSqlTpzu1ZZ-Dl-8-0Dm_bq0kopcD5BMJU4X8x3MUnDt4C=w230-rw',
-    decsription: 'Laptop HP Victus 16-e1107AX (7C140PA) (Ryzen 5 6600H/RAM 8GB/512GB SSD/ Windows 11)',
-    priceLast: '23.490.000 ₫',
-    priceFrist: '25.490.000 ₫',
-    percentDiscount: '-7.85%',
-    name: 'MacBook Air 2020 13.3 inch MGND3SA/A (M1/8GB/SSD256GB) (Vàng)',
-  };
-
   const getDetail = async (id) => {
     try {
       const res = await get(`sanpham/${productId}`);
@@ -90,27 +80,42 @@ const ItemDetail = () => {
   };
 
   useEffect(() => {
-    setImageActve(imgDetail[0]);
+
     if (productId) {
       getDetail(productId);
     }
   }, [productId]);
+
+
+  useEffect(() => {
+    if (!!img && img.length) {
+      setImageActve(img[0] ?? {});
+    }
+  }, [img])
+
+  useEffect(() => {
+    if (data) {
+      setImg(data?.hinhAnhs)
+    }
+  }, [data])
+
+  console.log(img, "imgDetail");
 
   return (
     <div className="itemDetail-Box">
       <div className="item-left">
         <div className="imageContainer">
           <div className="img-preview">
-            <img src={imageActive.img} alt={`img-active-${imageActive.id}`} />
+            <img src={imageActive?.path ?? ''} alt={`img-active-${imageActive?.id}`} />
           </div>
           <div className="list-imgProduct">
-            {imgDetail.map((item) => (
+            {data?.hinhAnhs?.map((item) => (
               <div
                 className={`img-box ${imageActive.id === item.id ? 'img-box--active' : ''}`}
                 key={item.id}
                 onMouseEnter={() => setImageActve(item)}
               >
-                <img src={item.img} alt={`img-${item.id}`} />
+                <img src={item.path} alt={`img-${item.id}`} />
               </div>
             ))}
           </div>
