@@ -11,6 +11,9 @@ import { useSearchParams } from 'react-router-dom';
 const Product = () => {
   const [sort, setSort] = useState({});
   const [arrSP, setArrSP] = useState([]);
+  const [totalPAge, setTotalPage] = useState(1);
+  const [page, setPage] = useState(0)
+
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -22,6 +25,7 @@ const Product = () => {
       const res = await request.get(`sanpham/nhasanxuat/${nhaSanXuat}`);
       if (res && res.data) {
         setArrSP(res.data.data);
+
       }
     } catch (error) {
       console.log(error);
@@ -70,9 +74,11 @@ const Product = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const res = await request.get('sanphamactive?limit=12&currentpage=0');
+        const res = await request.get(`sanphamactive?limit=12&currentpage=${page}?active=true`);
         if (res && res.data) {
           setArrSP(res.data.data);
+          console.log(res.data.totalPage, 'res.totalPage');
+          setTotalPage(res.data.totalPage)
         }
       } catch (error) {
         console.log(error);
@@ -80,7 +86,7 @@ const Product = () => {
     };
     loadData();
     return () => { };
-  }, []);
+  }, [page]);
 
   return (
     <div className="bg-container">
@@ -123,7 +129,7 @@ const Product = () => {
               </div>
               <div className="list-item">
                 {arrSP.length > 0 ? (
-                  <ListItem data={arrSP} />
+                  <ListItem data={arrSP} count={totalPAge} page={page} setPage={setPage} />
                 ) : (
                   <div className="no-content">
                     <NoContent />

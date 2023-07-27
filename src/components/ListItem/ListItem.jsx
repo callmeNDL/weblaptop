@@ -3,7 +3,7 @@ import Item from '../Item/Item';
 import PaginationRounded from '../Pagination/Pagination';
 import './ListItem.scss';
 
-const ListItem = ({ title, data }) => {
+const ListItem = ({ title, data, count, page, setPage }) => {
   const navigate = useNavigate();
 
   return (
@@ -30,7 +30,7 @@ const ListItem = ({ title, data }) => {
           </div>
         ))}
       </div>
-      <PaginationRounded />
+      <PaginationRounded count={count} page={page} setPage={setPage} />
     </div>
   );
 };
