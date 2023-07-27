@@ -17,7 +17,6 @@ const ItemCount = (props) => {
         </span>
       </div>
       <div className="delete" onClick={props.deleteItem}>
-        Xoá
       </div>
     </div>
   );
